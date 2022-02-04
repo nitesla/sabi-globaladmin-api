@@ -1,4 +1,4 @@
-package com.sabi.globaladmin.notification.requestDto;
+package com.sabi.globaladmin.notification.requestdto;
 
 
 import lombok.AllArgsConstructor;

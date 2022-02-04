@@ -1,18 +1,15 @@
-package com.sabi.globaladmin.notification.requestDto;
-
+package com.sabi.globaladmin.notification.requestdto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Data
-public class RecipientRequest {
-
-
-    private String email;
-    private String phoneNo;
+public class SmsRequest {
+    private String message;
+    private String phoneNumber;
 }

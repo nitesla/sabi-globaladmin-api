@@ -2,8 +2,8 @@ package com.sabi.globaladmin.services;
 
 
 import com.sabi.globaladmin.apihelper.API;
-import com.sabi.globaladmin.notification.requestDto.WhatsAppRequest;
-import com.sabi.globaladmin.notification.responseDto.WhatsAppResponse;
+import com.sabi.globaladmin.notification.requestdto.WhatsAppRequest;
+import com.sabi.globaladmin.notification.responsedto.WhatsAppResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

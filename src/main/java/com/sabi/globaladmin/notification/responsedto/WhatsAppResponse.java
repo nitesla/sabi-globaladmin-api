@@ -1,4 +1,4 @@
-package com.sabi.globaladmin.notification.responseDto;
+package com.sabi.globaladmin.notification.responsedto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
