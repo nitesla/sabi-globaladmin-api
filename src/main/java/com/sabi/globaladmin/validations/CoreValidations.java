@@ -1,6 +1,7 @@
 package com.sabi.globaladmin.validations;
 
 
+import com.sabi.globaladmin.dto.requestdto.ChangePasswordDto;
 import com.sabi.globaladmin.dto.requestdto.UserDto;
 import com.sabi.globaladmin.exceptions.BadRequestException;
 import com.sabi.globaladmin.exceptions.NotFoundException;
@@ -117,16 +118,16 @@ public class CoreValidations {
 
 
 
-//    public void changePassword(ChangePasswordDto changePasswordDto) {
-//        if (changePasswordDto.getPassword() == null || changePasswordDto.getPassword().isEmpty())
-//            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Password cannot be empty");
-//        if (changePasswordDto.getPassword().length() < 6 || changePasswordDto.getPassword().length() > 20)// NAME LENGTH*********
-//            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Invalid password length");
-//        if (changePasswordDto.getPreviousPassword() == null || changePasswordDto.getPreviousPassword().isEmpty())
-//            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Previous password cannot be empty");
-//
-//
-//    }
+    public void changePassword(ChangePasswordDto changePasswordDto) {
+        if (changePasswordDto.getPassword() == null || changePasswordDto.getPassword().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Password cannot be empty");
+        if (changePasswordDto.getPassword().length() < 6 || changePasswordDto.getPassword().length() > 20)// NAME LENGTH*********
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Invalid password length");
+        if (changePasswordDto.getPreviousPassword() == null || changePasswordDto.getPreviousPassword().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Previous password cannot be empty");
+
+
+    }
 
 
 

@@ -28,7 +28,7 @@ public class UserResponse {
     private LocalDateTime updatedDate;
     private Long createdBy;
     private Long updatedBy;
-    private Boolean isActive;
+    private int status;
     private LocalDateTime failedLoginDate;
     private LocalDateTime lastLogin;
     private Long roleId;
