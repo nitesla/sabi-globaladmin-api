@@ -32,38 +32,38 @@ public class CoreValidations {
         this.lgaRepository = lgaRepository;
     }
 
-//    public void validateRole(RoleDto roleDto) {
-//        if (roleDto.getName() == null || roleDto.getName().isEmpty())
-//            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Name cannot be empty");
-//        if (roleDto.getName().length() < 2 || roleDto.getName().length() > 100)// NAME LENGTH*********
-//            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Invalid name  length");
-//
-//    }
+    public void validateRole(RoleDto roleDto) {
+        if (roleDto.getName() == null || roleDto.getName().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Name cannot be empty");
+        if (roleDto.getName().length() < 2 || roleDto.getName().length() > 100)// NAME LENGTH*********
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Invalid name  length");
 
-//    public void validatePermission(PermissionDto permissionDto) {
-//
-//        if (permissionDto.getName() == null || permissionDto.getName().isEmpty())
-//            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Name cannot be empty");
-//        if (permissionDto.getName().length() < 2 || permissionDto.getName().length() > 100)// NAME LENGTH*********
-//            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Invalid name  length");
-//
-//        if (permissionDto.getCode() == null || permissionDto.getCode().isEmpty())
-//            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "code cannot be empty");
-//    }
+    }
 
-//    public void validateRolePermission(RolePermissionDto rolePermissionDto) {
-//        if ((Long) rolePermissionDto.getRoleId() == null)
-//            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Role Id cannot be empty");
-//        if (rolePermissionDto.getPermissionIds() == null)
-//            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Role permission(s) cannot be empty");
-//        roleRepository.findById(rolePermissionDto.getRoleId())
-//                .orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
-//                        " Enter a valid Role"));
-//        rolePermissionDto.getPermissionIds().forEach((p) -> {
-//            permissionRepository.findById(p).orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
-//                    " Permission " + p + " Does not exist"));
-//        });
-//    }
+    public void validatePermission(PermissionDto permissionDto) {
+
+        if (permissionDto.getName() == null || permissionDto.getName().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Name cannot be empty");
+        if (permissionDto.getName().length() < 2 || permissionDto.getName().length() > 100)// NAME LENGTH*********
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Invalid name  length");
+
+        if (permissionDto.getCode() == null || permissionDto.getCode().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "code cannot be empty");
+    }
+
+    public void validateRolePermission(RolePermissionDto rolePermissionDto) {
+        if ((Long) rolePermissionDto.getRoleId() == null)
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Role Id cannot be empty");
+        if (rolePermissionDto.getPermissionIds() == null)
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Role permission(s) cannot be empty");
+        roleRepository.findById(rolePermissionDto.getRoleId())
+                .orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
+                        " Enter a valid Role"));
+        rolePermissionDto.getPermissionIds().forEach((p) -> {
+            permissionRepository.findById(p).orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
+                    " Permission " + p + " Does not exist"));
+        });
+    }
 
 
     public void validateUser(UserDto userDto) {
