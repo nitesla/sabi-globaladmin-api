@@ -16,7 +16,7 @@ phases:
       - echo AWSCLI upgraded successfully...
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - REPOSITORY_URI=541404431222.dkr.ecr.eu-west-2.amazonaws.com/sabi-logistic-api
+      - REPOSITORY_URI=541404431222.dkr.ecr.eu-west-2.amazonaws.com/sabi-globaladmin-api
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   build:
