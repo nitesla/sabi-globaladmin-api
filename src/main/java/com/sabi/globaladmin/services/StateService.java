@@ -152,11 +152,6 @@ public class StateService {
 
     }
 
-    public List<State> getAll(Boolean isActive){
-        List<State> Colors = stateRepository.findByIsActive(isActive);
-        return Colors;
-
-    }
 
 
 }

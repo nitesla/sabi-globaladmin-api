@@ -2,8 +2,6 @@ package com.sabi.globaladmin.model;
 
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -14,25 +12,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
-
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
-public class Permission {
+public class Bank {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-    private String menuName;
-    private String url;
-    private String permissionType;
-    private String appPermission;
-
+    private String code;
     @ApiModelProperty(hidden = true)
     private LocalDateTime createdDate = LocalDateTime.now();
 
@@ -42,10 +32,10 @@ public class Permission {
 
     private Long createdBy;
     private Long updatedBy;
-
     private int status;
 
-
-
-
+    public Bank(String name, String code) {
+        this.name = name;
+        this.code = code;
+    }
 }

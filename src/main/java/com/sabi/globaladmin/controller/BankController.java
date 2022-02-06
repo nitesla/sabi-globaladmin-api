@@ -1,11 +1,12 @@
 package com.sabi.globaladmin.controller;
 
 
-
-import com.sabi.globaladmin.dto.requestdto.StateDto;
-import com.sabi.globaladmin.dto.responsedto.StateResponseDto;
-import com.sabi.globaladmin.model.State;
-import com.sabi.globaladmin.services.StateService;
+import com.sabi.globaladmin.dto.requestdto.BankDto;
+import com.sabi.globaladmin.dto.requestdto.EnableDisEnableDto;
+import com.sabi.globaladmin.dto.responsedto.BankResponseDto;
+import com.sabi.globaladmin.model.Bank;
+import com.sabi.globaladmin.services.BankService;
+import com.sabi.globaladmin.services.WhatsAppService;
 import com.sabi.globaladmin.utils.Constants;
 import com.sabi.globaladmin.utils.CustomResponseCode;
 import com.sabi.globaladmin.utils.Response;
@@ -18,32 +19,32 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @SuppressWarnings("All")
 @RestController
-@RequestMapping(Constants.APP_CONTENT+"global/state")
-public class StateController {
+@RequestMapping(Constants.APP_CONTENT +"global/bank")
+public class BankController {
 
 
-    private final StateService service;
+    private final BankService service;
+    private final WhatsAppService whatsAppService;
 
-    public StateController(StateService service) {
+    public BankController(BankService service, WhatsAppService whatsAppService) {
         this.service = service;
+        this.whatsAppService = whatsAppService;
     }
 
 
     /** <summary>
-     * State creation endpoint
+     * Bank creation endpoint
      * </summary>
-     * <remarks>this endpoint is responsible for creation of new states</remarks>
+     * <remarks>this endpoint is responsible for creation of new bank</remarks>
      */
 
     @PostMapping("")
-    // @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN','ROLE_CREATE_USER')")
-    public ResponseEntity<Response> createState(@Validated @RequestBody StateDto request){
+    public ResponseEntity<Response> createBank(@Validated @RequestBody BankDto request){
         HttpStatus httpCode ;
         Response resp = new Response();
-        StateResponseDto response = service.createState(request);
+        BankResponseDto response = service.createBank(request);
         resp.setCode(CustomResponseCode.SUCCESS);
         resp.setDescription("Successful");
         resp.setData(response);
@@ -53,18 +54,19 @@ public class StateController {
 
 
 
+
+
     /** <summary>
-     * State update endpoint
+     * Bank update endpoint
      * </summary>
-     * <remarks>this endpoint is responsible for updating states</remarks>
+     * <remarks>this endpoint is responsible for updating bank</remarks>
      */
 
     @PutMapping("")
-    // @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN','ROLE_CREATE_USER')")
-    public ResponseEntity<Response> updateState(@Validated @RequestBody  StateDto request){
+    public ResponseEntity<Response> updateBank(@Validated @RequestBody  BankDto request){
         HttpStatus httpCode ;
         Response resp = new Response();
-        StateResponseDto response = service.updateState(request);
+        BankResponseDto response = service.updateBank(request);
         resp.setCode(CustomResponseCode.SUCCESS);
         resp.setDescription("Update Successful");
         resp.setData(response);
@@ -73,25 +75,22 @@ public class StateController {
     }
 
 
-
     /** <summary>
      * Get single record endpoint
      * </summary>
      * <remarks>this endpoint is responsible for getting a single record</remarks>
      */
     @GetMapping("/{id}")
-    // @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN','ROLE_CREATE_USER')")
-    public ResponseEntity<Response> getState(@PathVariable Long id){
+    public ResponseEntity<Response> getBank(@PathVariable Long id){
         HttpStatus httpCode ;
         Response resp = new Response();
-        StateResponseDto response = service.findState(id);
+        BankResponseDto response = service.findBank(id);
         resp.setCode(CustomResponseCode.SUCCESS);
         resp.setDescription("Record fetched successfully !");
         resp.setData(response);
         httpCode = HttpStatus.OK;
         return new ResponseEntity<>(resp, httpCode);
     }
-
 
 
     /** <summary>
@@ -99,52 +98,51 @@ public class StateController {
      * </summary>
      * <remarks>this endpoint is responsible for getting all records and its searchable</remarks>
      */
-    @GetMapping("/page")
-    public ResponseEntity<Response> getStates(@RequestParam(value = "name",required = false)String name,
-                                              @RequestParam(value = "countryId",required = false)Long countryId,
-                                             @RequestParam(value = "page") int page,
-                                             @RequestParam(value = "pageSize") int pageSize){
+    @GetMapping("")
+    public ResponseEntity<Response> getBanks(@RequestParam(value = "name",required = false)String name,
+                                              @RequestParam(value = "code",required = false)String code,
+                                              @RequestParam(value = "page") int page,
+                                              @RequestParam(value = "pageSize") int pageSize){
         HttpStatus httpCode ;
         Response resp = new Response();
-        Page<State> response = service.findAll(name,countryId,PageRequest.of(page, pageSize));
+        Page<Bank> response = service.findAll(name,code, PageRequest.of(page, pageSize));
         resp.setCode(CustomResponseCode.SUCCESS);
         resp.setDescription("Record fetched successfully !");
         resp.setData(response);
         httpCode = HttpStatus.OK;
         return new ResponseEntity<>(resp, httpCode);
     }
+
 
 
     /** <summary>
      * Enable disenable
      * </summary>
-     * <remarks>this endpoint is responsible for enabling and disenabling a State</remarks>
+     * <remarks>this endpoint is responsible for enabling and disenabling a bank</remarks>
      */
 
-//    @PutMapping("/enabledisenable")
-//    public ResponseEntity<Response> enableDisEnable(@Validated @RequestBody EnableDisEnableDto request){
-//        HttpStatus httpCode ;
-//        Response resp = new Response();
-//        service.enableDisEnableState(request);
-//        resp.setCode(CustomResponseCode.SUCCESS);
-//        resp.setDescription("Successful");
-//        httpCode = HttpStatus.OK;
-//        return new ResponseEntity<>(resp, httpCode);
-//    }
-
-
-    @GetMapping("/list")
-    public ResponseEntity<Response> getAll(@RequestParam(value = "countryId",required = false)Long countryId){
+    @PutMapping("/enabledisable")
+    public ResponseEntity<Response> enableDisable(@Validated @RequestBody EnableDisEnableDto request){
         HttpStatus httpCode ;
         Response resp = new Response();
-        List<State> response = service.getAllByCountryId(countryId);
+        service.enableDisable(request);
         resp.setCode(CustomResponseCode.SUCCESS);
-        resp.setDescription("Record fetched successfully !");
-        resp.setData(response);
+        resp.setDescription("Successful");
         httpCode = HttpStatus.OK;
         return new ResponseEntity<>(resp, httpCode);
     }
 
 
 
+    @GetMapping("/list")
+    public ResponseEntity<Response> getAll(@RequestParam(value = "status")int status){
+        HttpStatus httpCode ;
+        Response resp = new Response();
+        List<Bank> response = service.getAll(status);
+        resp.setCode(CustomResponseCode.SUCCESS);
+        resp.setDescription("Record fetched successfully !");
+        resp.setData(response);
+        httpCode = HttpStatus.OK;
+        return new ResponseEntity<>(resp, httpCode);
+    }
 }

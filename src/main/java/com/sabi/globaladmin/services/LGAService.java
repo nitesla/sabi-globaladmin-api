@@ -167,9 +167,5 @@ public class LGAService {
 
     }
 
-    public List<LGA> getAll(Boolean isActive){
-        List<LGA> Colors = lgaRepository.findByIsActive(isActive);
-        return Colors;
 
-    }
 }

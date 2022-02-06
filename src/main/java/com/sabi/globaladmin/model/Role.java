@@ -29,7 +29,6 @@ public class Role {
     private Long id;
     private String name;
     private String description;
-    private Long clientId;
 
     @ApiModelProperty(hidden = true)
     private LocalDateTime createdDate = LocalDateTime.now();

@@ -174,4 +174,14 @@ public class CoreValidations {
             throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Code cannot be empty");
     }
 
+
+
+    public void validateBank(BankDto bankDto) {
+
+        if (bankDto.getName() == null || bankDto.getName().trim().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Name cannot be empty");
+        if (bankDto.getCode() == null || bankDto.getCode().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Bank code cannot be empty");
+    }
+
 }
