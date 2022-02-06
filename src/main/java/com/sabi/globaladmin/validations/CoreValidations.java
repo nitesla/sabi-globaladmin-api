@@ -1,13 +1,13 @@
 package com.sabi.globaladmin.validations;
 
 
-import com.sabi.globaladmin.dto.requestdto.ChangePasswordDto;
-import com.sabi.globaladmin.dto.requestdto.UserDto;
+import com.sabi.globaladmin.dto.requestdto.*;
 import com.sabi.globaladmin.exceptions.BadRequestException;
 import com.sabi.globaladmin.exceptions.NotFoundException;
+import com.sabi.globaladmin.model.Country;
 import com.sabi.globaladmin.model.Role;
-import com.sabi.globaladmin.repository.PermissionRepository;
-import com.sabi.globaladmin.repository.RoleRepository;
+import com.sabi.globaladmin.model.State;
+import com.sabi.globaladmin.repository.*;
 import com.sabi.globaladmin.utils.CustomResponseCode;
 import com.sabi.globaladmin.utils.Utility;
 import lombok.extern.slf4j.Slf4j;
@@ -19,10 +19,17 @@ import org.springframework.stereotype.Service;
 public class CoreValidations {
     private RoleRepository roleRepository;
     private PermissionRepository permissionRepository;
+    private CountryRepository countryRepository;
+    private StateRepository stateRepository;
+    private LGARepository lgaRepository;
 
-    public CoreValidations(RoleRepository roleRepository, PermissionRepository permissionRepository) {
+    public CoreValidations(RoleRepository roleRepository, PermissionRepository permissionRepository,CountryRepository countryRepository,
+                           StateRepository stateRepository,LGARepository lgaRepository) {
         this.roleRepository = roleRepository;
         this.permissionRepository = permissionRepository;
+        this.countryRepository = countryRepository;
+        this.stateRepository = stateRepository;
+        this.lgaRepository = lgaRepository;
     }
 
 //    public void validateRole(RoleDto roleDto) {
@@ -130,5 +137,41 @@ public class CoreValidations {
     }
 
 
+    public void validateState(StateDto stateDto) {
+        if (stateDto.getName() == null || stateDto.getName().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Name cannot be empty");
+        String valName = stateDto.getName();
+        char valCharName = valName.charAt(0);
+        if (Character.isDigit(valCharName)){
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Name can not start with a number");
+        }
+        Country country = countryRepository.findById(stateDto.getCountryId())
+                .orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
+                        " Enter a valid Country id!"));
+    }
+
+
+    public void validateLGA (LGADto lgaDto){
+        if (lgaDto.getName() == null || lgaDto.getName().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Name cannot be empty");
+
+        String valName = lgaDto.getName();
+        char valCharName = valName.charAt(0);
+        if (Character.isDigit(valCharName)){
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Name can not start with a number");
+        }
+
+        State state = stateRepository.findById(lgaDto.getStateId())
+                .orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
+                        " Enter a valid State id!"));
+    }
+
+
+    public void validateCountry(CountryDto countryDto) {
+        if (countryDto.getName() == null || countryDto.getName().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Name cannot be empty");
+        if(countryDto.getCode() == null || countryDto.getCode().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Code cannot be empty");
+    }
 
 }
