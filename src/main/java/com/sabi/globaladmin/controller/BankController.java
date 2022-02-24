@@ -98,7 +98,7 @@ public class BankController {
      * </summary>
      * <remarks>this endpoint is responsible for getting all records and its searchable</remarks>
      */
-    @GetMapping("")
+    @GetMapping("/page")
     public ResponseEntity<Response> getBanks(@RequestParam(value = "name",required = false)String name,
                                               @RequestParam(value = "code",required = false)String code,
                                               @RequestParam(value = "page") int page,
@@ -135,10 +135,11 @@ public class BankController {
 
 
     @GetMapping("/list")
-    public ResponseEntity<Response> getAll(@RequestParam(value = "status")int status){
+    public ResponseEntity<Response> getAll(@RequestParam(value = "name",required = false)String name,
+                                           @RequestParam(value = "code",required = false)String code){
         HttpStatus httpCode ;
         Response resp = new Response();
-        List<Bank> response = service.getAll(status);
+        List<Bank> response = service.getAll(name,code);
         resp.setCode(CustomResponseCode.SUCCESS);
         resp.setDescription("Record fetched successfully !");
         resp.setData(response);
