@@ -127,8 +127,8 @@ public class BankService {
     }
 
 
-    public List<Bank> getAll(int status){
-        List<Bank> banks = bankRepository.findByStatus(status);
+    public List<Bank> getAll(String name,String code){
+        List<Bank> banks = bankRepository.findbankList(name,code);
         return banks;
 
     }

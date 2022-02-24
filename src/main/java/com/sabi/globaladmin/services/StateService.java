@@ -141,8 +141,8 @@ public class StateService {
 //    }
 
 
-    public List<State> getAllByCountryId(Long countryId){
-        List<State> states = stateRepository.findByCountryId(countryId);
+    public List<State> getAllByCountryId(Long countryId,String name){
+        List<State> states = stateRepository.findByCountryId(countryId,name);
         for (State tran : states
                 ) {
             Country country = countryRepository.getOne(tran.getCountryId());
