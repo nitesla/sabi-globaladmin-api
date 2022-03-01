@@ -19,12 +19,12 @@ public interface CountryRepository extends JpaRepository<Country, Long> {
     Country findByName(String name);
 
     @Query("SELECT c FROM Country c WHERE ((:name IS NULL) OR (:name IS NOT NULL AND c.name like %:name%))" +
-            " AND ((:code IS NULL) OR (:code IS NOT NULL AND c.code like %:code%)) order by c.id desc")
+            " AND ((:code IS NULL) OR (:code IS NOT NULL AND c.code like %:code%))")
     List<Country> findAllByNameAndCode(@Param("name") String name,
                                        @Param("code") String code);
 
     @Query("SELECT c FROM Country c WHERE ((:name IS NULL) OR (:name IS NOT NULL AND c.name like %:name%))" +
-            " AND ((:code IS NULL) OR (:code IS NOT NULL AND c.code like %:code%)) order by c.id desc")
+            " AND ((:code IS NULL) OR (:code IS NOT NULL AND c.code like %:code%))")
     Page<Country> findCountries(@Param("name") String name,
                                 @Param("code") String code,
                                 Pageable pageable);
