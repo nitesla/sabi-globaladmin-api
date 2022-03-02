@@ -44,12 +44,12 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-//        seedCountries();
-//        seedStates();
-//        seedLocalGovernments();
-//        seedBanks();
-//        seedIntegrationUsers();
-//        seedAdminUser();
+        seedCountries();
+        seedStates();
+        seedLocalGovernments();
+        seedBanks();
+        seedIntegrationUsers();
+        seedAdminUser();
 
     }
 
@@ -164,6 +164,7 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
                 add(new State("Taraba",1l));
                 add(new State("Yobe",1l));
                 add(new State("Zamfara",1l));
+                add(new State("Lagos_OFS",1l));
             }
         };
 
