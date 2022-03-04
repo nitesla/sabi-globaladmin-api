@@ -959,6 +959,8 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
                 add(new LGA("Talata Mafara", 37l));
                 add(new LGA("Tsafe", 37l));
                 add(new LGA("Zurmi", 37l));
+                add(new LGA("Ojo_OFS", 38l));
+                add(new LGA("Badagry_OFS", 38l));
             }
         };
         localGovernments.forEach(localGovernment -> {
