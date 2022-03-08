@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping(Constants.APP_CONTENT+"global/permission")
@@ -91,14 +92,14 @@ public class PermissionController {
      * </summary>
      * <remarks>this endpoint is responsible for getting all records and its searchable</remarks>
      */
-    @GetMapping("")
+    @GetMapping("/page")
     public ResponseEntity<Response> getPermissions(@RequestParam(value = "name",required = false)String name,
-                                                   @RequestParam(value = "status",required = false)int status,
-                                             @RequestParam(value = "page") int page,
-                                             @RequestParam(value = "pageSize") int pageSize){
+                                                   @RequestParam(value = "appPermission")String appPermission,
+                                                   @RequestParam(value = "page") int page,
+                                                   @RequestParam(value = "pageSize") int pageSize){
         HttpStatus httpCode ;
         Response resp = new Response();
-        Page<Permission> response = service.findAll(name,status, PageRequest.of(page, pageSize));
+        Page<Permission> response = service.findAll(name,appPermission, PageRequest.of(page, pageSize));
         resp.setCode(CustomResponseCode.SUCCESS);
         resp.setDescription("Record fetched successfully !");
         resp.setData(response);
@@ -106,5 +107,18 @@ public class PermissionController {
         return new ResponseEntity<>(resp, httpCode);
     }
 
+
+    @GetMapping("/list")
+    public ResponseEntity<Response> getAll(@RequestParam(value = "name",required = false)String name,
+                                           @RequestParam(value = "appPermission")String appPermission){
+        HttpStatus httpCode ;
+        Response resp = new Response();
+        List<Permission> response = service.getAll(name,appPermission);
+        resp.setCode(CustomResponseCode.SUCCESS);
+        resp.setDescription("Record fetched successfully !");
+        resp.setData(response);
+        httpCode = HttpStatus.OK;
+        return new ResponseEntity<>(resp, httpCode);
+    }
 
 }
