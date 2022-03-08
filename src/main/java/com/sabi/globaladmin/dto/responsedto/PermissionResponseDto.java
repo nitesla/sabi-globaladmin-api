@@ -12,7 +12,8 @@ public class PermissionResponseDto {
 
     private Long id;
     private String name;
-    private String code;
+    private String permissionType;
+    private String appPermission;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
     private Long createdBy;

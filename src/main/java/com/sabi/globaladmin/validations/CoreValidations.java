@@ -47,8 +47,8 @@ public class CoreValidations {
         if (permissionDto.getName().length() < 2 || permissionDto.getName().length() > 100)// NAME LENGTH*********
             throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Invalid name  length");
 
-        if (permissionDto.getCode() == null || permissionDto.getCode().isEmpty())
-            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "code cannot be empty");
+        if (permissionDto.getAppPermission() == null || permissionDto.getAppPermission().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "App permission cannot be empty");
     }
 
     public void validateRolePermission(RolePermissionDto rolePermissionDto) {

@@ -61,7 +61,7 @@ public class PermissionService {
         coreValidations.validatePermission(request);
         User userCurrent = TokenService.getCurrentUserFromSecurityContext();
         Permission permission = mapper.map(request,Permission.class);
-        Permission permissionExist = permissionRepository.findByName(request.getName());
+        Permission permissionExist = permissionRepository.findByNameAndAppPermission(request.getName(),request.getAppPermission());
         if(permissionExist !=null){
             throw new ConflictException(CustomResponseCode.CONFLICT_EXCEPTION, " Permission already exist");
         }
@@ -129,8 +129,8 @@ public class PermissionService {
      * </summary>
      * <remarks>this method is responsible for getting all records in pagination</remarks>
      */
-    public Page<Permission> findAll(String name,int status, PageRequest pageRequest ){
-        Page<Permission> functions = permissionRepository.findFunctions(name,status,pageRequest);
+    public Page<Permission> findAll(String name,String appPermission, PageRequest pageRequest ){
+        Page<Permission> functions = permissionRepository.findFunctions(name,appPermission,pageRequest);
         if(functions == null){
             throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION, " No record found !");
         }
@@ -139,6 +139,11 @@ public class PermissionService {
     }
 
 
+    public List<Permission> getAll(String name,String appPermission){
+        List<Permission> permissions = permissionRepository.listPermission(name,appPermission);
+        return permissions;
+
+    }
 
 
 
