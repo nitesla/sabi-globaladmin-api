@@ -2,12 +2,14 @@ package com.sabi.globaladmin.controller;
 
 
 import com.sabi.globaladmin.dto.requestdto.LoginRequest;
+import com.sabi.globaladmin.dto.responsedto.AccessListDto;
 import com.sabi.globaladmin.dto.responsedto.AccessTokenWithUserDetails;
 import com.sabi.globaladmin.exceptions.LockedException;
 import com.sabi.globaladmin.exceptions.UnauthorizedException;
 import com.sabi.globaladmin.model.User;
 import com.sabi.globaladmin.security.AuthenticationWithToken;
 import com.sabi.globaladmin.services.AuditTrailService;
+import com.sabi.globaladmin.services.PermissionService;
 import com.sabi.globaladmin.services.TokenService;
 import com.sabi.globaladmin.services.UserService;
 import com.sabi.globaladmin.utils.*;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 @SuppressWarnings("All")
@@ -43,10 +46,12 @@ public class AuthenticationController {
 
     private final UserService userService;
     private final AuditTrailService auditTrailService;
+    private final PermissionService permissionService;
 
-    public AuthenticationController(UserService userService,AuditTrailService auditTrailService) {
+    public AuthenticationController(UserService userService,AuditTrailService auditTrailService,PermissionService permissionService) {
         this.userService = userService;
         this.auditTrailService=auditTrailService;
+        this.permissionService=permissionService;
     }
 
 
@@ -104,13 +109,12 @@ public class AuthenticationController {
         SecurityContextHolder.getContext().setAuthentication(authWithToken);
         userService.updateLogin(user.getId());
 
-        String clientId= "";
-        String referralCode="";
-        String isEmailVerified="";
+        List<AccessListDto> permissions=null;
 
+        permissions = permissionService.getPermissionsByUserId(user.getId());
 
         AccessTokenWithUserDetails details = new AccessTokenWithUserDetails(newToken, user,
-                accessList,userService.getSessionExpiry());
+                accessList,userService.getSessionExpiry(),permissions);
 
         auditTrailService
                 .logEvent(loginRequest.getUsername(), "Login by username : " + loginRequest.getUsername(),

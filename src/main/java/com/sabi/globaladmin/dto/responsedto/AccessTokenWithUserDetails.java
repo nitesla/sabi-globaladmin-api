@@ -7,6 +7,7 @@ import com.sabi.globaladmin.model.User;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -44,11 +45,14 @@ public class AccessTokenWithUserDetails implements Serializable{
     @JsonProperty("userId")
     private long userId;
 
+    @JsonProperty("permissions")
+    List<AccessListDto> permissions;
 
 
 
 
-    public AccessTokenWithUserDetails(String token, User user, String menu, long tokenExpiry) {
+
+    public AccessTokenWithUserDetails(String token, User user, String menu, long tokenExpiry,List<AccessListDto> permissions) {
         this.accessToken = token;
 
         this.email = user.getEmail();
@@ -59,6 +63,7 @@ public class AccessTokenWithUserDetails implements Serializable{
         this.menu = menu;
         this.tokenExpiry = tokenExpiry;
         this.userId=user.getId();
+        this.permissions=permissions;
 
 
 

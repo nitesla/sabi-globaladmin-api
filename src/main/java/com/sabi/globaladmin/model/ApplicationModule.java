@@ -17,14 +17,18 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 @Entity
-public class Bank {
+public class ApplicationModule {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String appCode;
     private String name;
-    private String code;
+    private String description;
+    private String url;
+    private String icons;
+
     @ApiModelProperty(hidden = true)
     private LocalDateTime createdDate = LocalDateTime.now();
 
@@ -35,10 +39,4 @@ public class Bank {
     private Long createdBy;
     private Long updatedBy;
     private int status;
-
-    public Bank(String name, String code) {
-        this.name = name;
-        this.code = code;
-
-    }
 }

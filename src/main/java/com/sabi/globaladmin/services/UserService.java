@@ -170,11 +170,6 @@ public class UserService {
         userRepository.save(user);
         log.debug("user record updated - {}"+ new Gson().toJson(user));
 
-        UserRole userRole = userRoleRepository.findByUserId(user.getId());
-        UserRole roleUser = userRoleRepository.getOne(userRole.getId());
-        roleUser.setRoleId(user.getRoleId());
-        userRoleRepository.save(roleUser);
-
         auditTrailService
                 .logEvent(userCurrent.getUsername(),
                         "Update user by username:" + userCurrent.getUsername(),

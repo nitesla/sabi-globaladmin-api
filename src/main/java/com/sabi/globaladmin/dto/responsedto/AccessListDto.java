@@ -9,4 +9,5 @@ import lombok.Data;
 public class AccessListDto {
 
     private String name;
+    private String appPermission;
 }

@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,28 +16,25 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 @Entity
-public class Bank {
-
+public class UserAppInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String code;
+    private String username;
+    private Long userId;
+    private String applicationCode;
     @ApiModelProperty(hidden = true)
-    private LocalDateTime createdDate = LocalDateTime.now();
+    private LocalDateTime actionDate = LocalDateTime.now();
+    private String authKey;
+    private String token;
 
-    @UpdateTimestamp
-    @ApiModelProperty(hidden = true)
-    private LocalDateTime updatedDate = LocalDateTime.now();
 
-    private Long createdBy;
-    private Long updatedBy;
-    private int status;
 
-    public Bank(String name, String code) {
-        this.name = name;
-        this.code = code;
 
-    }
+
+
+
+
+
 }
