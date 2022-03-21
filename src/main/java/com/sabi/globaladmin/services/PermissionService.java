@@ -7,8 +7,10 @@ import com.sabi.globaladmin.dto.responsedto.AccessListDto;
 import com.sabi.globaladmin.dto.responsedto.PermissionResponseDto;
 import com.sabi.globaladmin.exceptions.ConflictException;
 import com.sabi.globaladmin.exceptions.NotFoundException;
+import com.sabi.globaladmin.model.AppCodes;
 import com.sabi.globaladmin.model.Permission;
 import com.sabi.globaladmin.model.User;
+import com.sabi.globaladmin.repository.AppCodesRepository;
 import com.sabi.globaladmin.repository.PermissionRepository;
 import com.sabi.globaladmin.repository.UserRoleRepository;
 import com.sabi.globaladmin.utils.AuditTrailFlag;
@@ -16,7 +18,6 @@ import com.sabi.globaladmin.utils.CustomResponseCode;
 import com.sabi.globaladmin.utils.Utility;
 import com.sabi.globaladmin.validations.CoreValidations;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,7 +35,7 @@ public class PermissionService {
 
     @Autowired
     private UserRoleRepository userRoleRepository;
-
+    private AppCodesRepository appCodesRepository;
     private PermissionRepository permissionRepository;
     private final ModelMapper mapper;
     private final CoreValidations coreValidations;
@@ -42,8 +43,9 @@ public class PermissionService {
 
 
 
-    public PermissionService(PermissionRepository permissionRepository, ModelMapper mapper, CoreValidations coreValidations,
+    public PermissionService(AppCodesRepository appCodesRepository,PermissionRepository permissionRepository, ModelMapper mapper, CoreValidations coreValidations,
                              AuditTrailService auditTrailService) {
+        this.appCodesRepository = appCodesRepository;
         this.permissionRepository = permissionRepository;
         this.mapper = mapper;
         this.coreValidations = coreValidations;
@@ -61,10 +63,16 @@ public class PermissionService {
         coreValidations.validatePermission(request);
         User userCurrent = TokenService.getCurrentUserFromSecurityContext();
         Permission permission = mapper.map(request,Permission.class);
+
+        AppCodes appCodeExist = appCodesRepository.findByAppCode(request.getAppPermission());
+        if(appCodeExist == null){
+            throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,"App code does not exist");
+        }
         Permission permissionExist = permissionRepository.findByNameAndAppPermission(request.getName(),request.getAppPermission());
         if(permissionExist !=null){
             throw new ConflictException(CustomResponseCode.CONFLICT_EXCEPTION, " Permission already exist");
         }
+
         permission.setCreatedBy(userCurrent.getId());
         permission.setStatus(CustomResponseCode.ACTIVE_USER);
         permission = permissionRepository.save(permission);
@@ -93,6 +101,10 @@ public class PermissionService {
         Permission permission = permissionRepository.findById(request.getId())
                 .orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
                         "Requested permission id does not exist!"));
+        AppCodes appCodeExist = appCodesRepository.findByAppCode(request.getAppPermission());
+        if(appCodeExist == null){
+            throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,"App code does not exist");
+        }
         mapper.map(request, permission);
         permission.setUpdatedBy(userCurrent.getId());
         permissionRepository.save(permission);
@@ -148,23 +160,22 @@ public class PermissionService {
 
 
 
-    public String getPermissionsByUserId(Long userId) {
+    public List<AccessListDto> getPermissionsByUserId(Long userId) {
 
         List<AccessListDto> resultLists = new ArrayList<>();
         List<Object[]> result = permissionRepository.getPermissionsByUserId(userId);
-
+        try {
             result.forEach(r -> {
                 AccessListDto userPermission = new AccessListDto();
                 userPermission.setName((String) r[0]);
+                userPermission.setAppPermission((String) r[1]);
                 resultLists.add(userPermission);
 
             });
-
-         String accessList = StringUtils.join(resultLists, ',');
-
-        String access = accessList.replace("AccessListDto","").replaceAll("[()]","")
-                .replace("name","").replace("=","");
-        return access;
+        } catch (Exception var5) {
+            log.info("Error in returning object list" + var5);
+        }
+        return resultLists;
 
     }
 

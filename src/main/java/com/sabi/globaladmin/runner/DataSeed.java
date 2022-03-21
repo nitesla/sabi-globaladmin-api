@@ -34,6 +34,9 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private AppCodesRepository appCodesRepository;
+
 
 
 
@@ -50,6 +53,7 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
         seedBanks();
         seedIntegrationUsers();
         seedAdminUser();
+        seedAppCode();
 
     }
 
@@ -1061,5 +1065,26 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
         return user;
     }
 
+
+
+    private void seedAppCode() {
+        List<AppCodes> appCodes = new ArrayList<AppCodes>() {
+            {
+                add(new AppCodes("AG","SABI AGENT APPLICATION"));
+                add(new AppCodes("LG","SABI LOGISTICS APPLICATION"));
+                add(new AppCodes("SP","SABI SUPPLIER APPLICATION"));
+                add(new AppCodes("DC","DATA COLLECTION APPLICATION"));
+                add(new AppCodes("GA","GLOBAL ADMIN"));
+
+            }
+        };
+
+        appCodes.forEach(appCode -> {
+            AppCodes fetchApp = appCodesRepository.findByAppCode(appCode.getAppCode());
+            if (fetchApp == null) {
+                appCodesRepository.saveAndFlush(appCode);
+            }
+        });
+    }
 
 }
