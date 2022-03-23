@@ -1,5 +1,6 @@
 package com.sabi.globaladmin.dto.requestdto;
 
+import com.sabi.globaladmin.model.RolePermission;
 import lombok.Data;
 
 import java.util.List;
@@ -8,5 +9,6 @@ import java.util.List;
 public class RolePermissionDto {
     private Long id;
     private Long roleId;
-    private List<Long> permissionIds;
+    private List<RolePermission> permissionIds;
+//    private List<Long> permissionIds;
 }

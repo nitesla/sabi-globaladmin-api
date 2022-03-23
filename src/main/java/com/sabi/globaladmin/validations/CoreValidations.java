@@ -51,19 +51,7 @@ public class CoreValidations {
             throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "App permission cannot be empty");
     }
 
-    public void validateRolePermission(RolePermissionDto rolePermissionDto) {
-        if ((Long) rolePermissionDto.getRoleId() == null)
-            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Role Id cannot be empty");
-        if (rolePermissionDto.getPermissionIds() == null)
-            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Role permission(s) cannot be empty");
-        roleRepository.findById(rolePermissionDto.getRoleId())
-                .orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
-                        " Enter a valid Role"));
-        rolePermissionDto.getPermissionIds().forEach((p) -> {
-            permissionRepository.findById(p).orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
-                    " Permission " + p + " Does not exist"));
-        });
-    }
+
 
 
     public void validateUser(UserDto userDto) {
