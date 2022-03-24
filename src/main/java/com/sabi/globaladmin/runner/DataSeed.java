@@ -963,8 +963,26 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
                 add(new LGA("Talata Mafara", 37l));
                 add(new LGA("Tsafe", 37l));
                 add(new LGA("Zurmi", 37l));
-                add(new LGA("Ojo_OFS", 38l));
+                add(new LGA("Agege_OFS", 38l));
+                add(new LGA("Ajeromi/Ifelodun_OFS", 38l));
+                add(new LGA("Alimosho_OFS", 38l));
+                add(new LGA("Amuwo-Odofin_OFS", 38l));
+                add(new LGA("Apapa_OFS", 38l));
                 add(new LGA("Badagry_OFS", 38l));
+                add(new LGA("Epe_OFS", 38l));
+                add(new LGA("Eti-Osa_OFS", 38l));
+                add(new LGA("Ibeju/Lekki_OFS", 38l));
+                add(new LGA("Ifako-Ijaye_OFS", 38l));
+                add(new LGA("Ikeja_OFS", 38l));
+                add(new LGA("Ikorodu_OFS", 38l));
+                add(new LGA("Kosofe_OFS", 38l));
+                add(new LGA("Lagos Island_OFS", 38l));
+                add(new LGA("Lagos Mainland_OFS", 38l));
+                add(new LGA("Mushin_OFS", 38l));
+                add(new LGA("Ojo_OFS", 38l));
+                add(new LGA("Oshodi/Isolo_OFS", 38l));
+                add(new LGA("Somolu_OFS", 38l));
+                add(new LGA("Surulere_OFS", 38l));
             }
         };
         localGovernments.forEach(localGovernment -> {

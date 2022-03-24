@@ -1,9 +1,9 @@
 package com.sabi.globaladmin.services;
 
-import com.google.gson.Gson;
 import com.sabi.globaladmin.dto.requestdto.EnableDisEnableDto;
 import com.sabi.globaladmin.dto.requestdto.RolePermissionDto;
 import com.sabi.globaladmin.dto.responsedto.RolePermissionResponseDto;
+import com.sabi.globaladmin.exceptions.ConflictException;
 import com.sabi.globaladmin.exceptions.NotFoundException;
 import com.sabi.globaladmin.model.Permission;
 import com.sabi.globaladmin.model.RolePermission;
@@ -11,9 +11,7 @@ import com.sabi.globaladmin.model.User;
 import com.sabi.globaladmin.repository.PermissionRepository;
 import com.sabi.globaladmin.repository.RolePermissionRepository;
 import com.sabi.globaladmin.repository.RoleRepository;
-import com.sabi.globaladmin.utils.AuditTrailFlag;
 import com.sabi.globaladmin.utils.CustomResponseCode;
-import com.sabi.globaladmin.utils.Utility;
 import com.sabi.globaladmin.validations.CoreValidations;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -21,8 +19,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import java.beans.Transient;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -56,31 +53,27 @@ public class RolePermissionService {
      * <remarks>this method is responsible for creation of new RolePermission</remarks>
      */
 
-    public RolePermissionResponseDto createRolePermission(RolePermissionDto request, HttpServletRequest request1) {
-        coreValidations.validateRolePermission(request);
+    public void assignPermission(RolePermissionDto request) {
+
         User userCurrent = TokenService.getCurrentUserFromSecurityContext();
+        List<RolePermission> rolePerm = new ArrayList<>();
         RolePermission rolePermission = new RolePermission();
-        for (long permission : request.getPermissionIds()) {
-            rolePermission.setPermissionId(permission);
+        request.getPermissionIds().forEach(p -> {
+            rolePermission.setPermissionId(p.getPermissionId());
             rolePermission.setRoleId(request.getRoleId());
             rolePermission.setCreatedBy(userCurrent.getId());
-            rolePermission.setStatus(CustomResponseCode.ACTIVE_USER);
-            boolean exists = rolePermissionRepository
-                    .existsByRoleIdAndPermissionId(request.getRoleId(), permission);
-            if (!exists) {
-                rolePermission = rolePermissionRepository.save(rolePermission);
-                log.debug("Create new RolePermission - {}" + new Gson().toJson(rolePermission));
+            log.info(" role permission details " + rolePermission);
+            RolePermission exist = rolePermissionRepository.findByRoleIdAndPermissionId(request.getRoleId(),p.getPermissionId());
+            if(exist != null){
+                throw new ConflictException(CustomResponseCode.CONFLICT_EXCEPTION, " Permission id already assigned to the role ::::"+p.getPermissionId());
             }
-        }
+            rolePermissionRepository.save(rolePermission);
+            rolePerm.add(rolePermission);
 
-
-        auditTrailService
-                .logEvent(userCurrent.getUsername(),
-                        "Create new role permission by :" + userCurrent.getUsername(),
-                        AuditTrailFlag.CREATE,
-                        " Create new role permission for:" + rolePermission.getId() ,1, Utility.getClientIp(request1));
-        return mapper.map(rolePermission, RolePermissionResponseDto.class);
+        });
+//        return mapper.map(rolePermission, RolePermissionResponseDto.class);
     }
+
 
 
     /**
@@ -90,35 +83,7 @@ public class RolePermissionService {
      * <remarks>this method is responsible for updating already existing RolePermission</remarks>
      */
 
-    public RolePermissionResponseDto updateRolePermission(RolePermissionDto request,HttpServletRequest request1) {
-//        coreValidations.validateRolePermission(request);
-        User userCurrent = TokenService.getCurrentUserFromSecurityContext();
-        rolePermissionRepository.findById(request.getId()).orElseThrow(() ->
-                new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
-                        "Requested role permission id does not exist!")
-        );
-        RolePermission rolePermission = new RolePermission();
-        for (long permission : request.getPermissionIds()) {
-            rolePermission.setPermissionId(permission);
-            rolePermission.setId(request.getId());
-            rolePermission.setRoleId(request.getRoleId());
-            rolePermission.setUpdatedBy(userCurrent.getId());
-            rolePermission.setStatus(CustomResponseCode.ACTIVE_USER);
-            boolean exists = rolePermissionRepository
-                    .existsByRoleIdAndPermissionId(request.getRoleId(), permission);
-            if (!exists) {
-                rolePermission = rolePermissionRepository.save(rolePermission);
-                log.debug("Create new RolePermission - {}" + new Gson().toJson(rolePermission));
-            }
-        }
 
-        auditTrailService
-                .logEvent(userCurrent.getUsername(),
-                        "Update role permission by username:" + userCurrent.getUsername(),
-                        AuditTrailFlag.UPDATE,
-                        " Update role permission Request for:" + rolePermission.getId(),1, Utility.getClientIp(request1));
-        return mapper.map(rolePermission, RolePermissionResponseDto.class);
-    }
 
 
     /**
@@ -176,9 +141,14 @@ public class RolePermissionService {
         return permissionRole;
     }
 
-    @Transient
-    public void deleteRolePermission(Long roleId){
-        RolePermission rolePermission = rolePermissionRepository.findById(roleId).orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION, "RolePermission not found"));
+
+
+
+    public void removePermission(Long id){
+        RolePermission rolePermission = rolePermissionRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
+                        "Requested RolePermission id does not exist!"));
         rolePermissionRepository.delete(rolePermission);
     }
+
 }

@@ -17,7 +17,7 @@ import java.util.List;
 public interface RolePermissionRepository extends JpaRepository<RolePermission, Long> {
 
     List<RolePermission> findAllByRoleId(Long roleId);
-    RolePermission findByRoleId(Long roleId);
+    RolePermission findByRoleIdAndPermissionId(Long roleId,Long permissionId);
 
     @Query("SELECT p FROM RolePermission p WHERE ((:roleId IS NULL) OR (:roleId IS NOT NULL AND p.roleId = :roleId)) " +
             " AND ((:status IS NULL) OR (:status IS NOT NULL AND p.status = :status)) order by p.id")
