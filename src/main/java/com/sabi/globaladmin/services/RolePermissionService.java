@@ -107,7 +107,7 @@ public class RolePermissionService {
      * </summary>
      * <remarks>this method is responsible for getting all records in pagination</remarks>
      */
-    public Page<RolePermission> findAll(Long roleId, int status, PageRequest pageRequest) {
+    public Page<RolePermission> findAll(Long roleId, String status, PageRequest pageRequest) {
         Page<RolePermission> functions = rolePermissionRepository.findRolePermission(roleId, status, pageRequest);
         if (functions == null) {
             throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION, " No record found !");

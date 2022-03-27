@@ -22,7 +22,7 @@ public interface RolePermissionRepository extends JpaRepository<RolePermission, 
     @Query("SELECT p FROM RolePermission p WHERE ((:roleId IS NULL) OR (:roleId IS NOT NULL AND p.roleId = :roleId)) " +
             " AND ((:status IS NULL) OR (:status IS NOT NULL AND p.status = :status)) order by p.id")
     Page<RolePermission> findRolePermission(@Param("roleId") Long roleId,
-                                            @Param("status") int status,
+                                            @Param("status") String status,
                                             Pageable Pageable);
     boolean existsByRoleIdAndPermissionId(Long roleId, Long permissionId);
 

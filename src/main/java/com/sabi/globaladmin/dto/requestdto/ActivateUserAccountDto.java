@@ -11,7 +11,7 @@ public class ActivateUserAccountDto {
     private String resetToken;
 
     private Long updatedBy;
-    private int status;
+    private String status;
     private LocalDateTime passwordChangedOn;
 
 

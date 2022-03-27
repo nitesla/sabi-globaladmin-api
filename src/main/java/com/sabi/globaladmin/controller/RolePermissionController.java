@@ -79,7 +79,7 @@ public class RolePermissionController {
      */
     @GetMapping("")
     public ResponseEntity<Response> getRolePermissions(@RequestParam(value = "roleId",required = false)Long roleId,
-                                             @RequestParam(value = "status",required = false)int status,
+                                             @RequestParam(value = "status",required = false)String status,
                                              @RequestParam(value = "page") int page,
                                              @RequestParam(value = "pageSize") int pageSize){
         HttpStatus httpCode ;

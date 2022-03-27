@@ -104,7 +104,7 @@ public class UserController {
     public ResponseEntity<Response> getUsers(@RequestParam(value = "firstName",required = false)String firstName,
                                              @RequestParam(value = "lastName",required = false)String lastName,
                                              @RequestParam(value = "phone",required = false)String phone,
-                                             @RequestParam(value = "status",required = false)int status,
+                                             @RequestParam(value = "status",required = false)String status,
                                              @RequestParam(value = "email",required = false)String email,
                                              @RequestParam(value = "sortBy", required = false) String sort,
                                                        @RequestParam(value = "page") int page,

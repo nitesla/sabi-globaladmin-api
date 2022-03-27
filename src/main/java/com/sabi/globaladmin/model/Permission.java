@@ -43,7 +43,7 @@ public class Permission {
     private Long createdBy;
     private Long updatedBy;
 
-    private int status;
+    private String status;
 
 
 
