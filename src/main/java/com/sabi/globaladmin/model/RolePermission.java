@@ -24,6 +24,9 @@ public class RolePermission {
     private Long roleId;
     private Long permissionId;
 
+    @Transient
+    private String roleName;
+
     @ApiModelProperty(hidden = true)
     private LocalDateTime createdDate = LocalDateTime.now();
 
@@ -33,9 +36,6 @@ public class RolePermission {
 
     private Long createdBy;
     private Long updatedBy;
-
-    private String status;
-
 
     @Transient
     private String permission;

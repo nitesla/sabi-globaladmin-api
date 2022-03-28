@@ -94,7 +94,7 @@ public class PermissionController {
      */
     @GetMapping("/page")
     public ResponseEntity<Response> getPermissions(@RequestParam(value = "name",required = false)String name,
-                                                   @RequestParam(value = "appPermission")String appPermission,
+                                                   @RequestParam(value = "appPermission",required = false)String appPermission,
                                                    @RequestParam(value = "page") int page,
                                                    @RequestParam(value = "pageSize") int pageSize){
         HttpStatus httpCode ;

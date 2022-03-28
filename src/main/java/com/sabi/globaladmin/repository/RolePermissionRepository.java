@@ -19,16 +19,14 @@ public interface RolePermissionRepository extends JpaRepository<RolePermission, 
     List<RolePermission> findAllByRoleId(Long roleId);
     RolePermission findByRoleIdAndPermissionId(Long roleId,Long permissionId);
 
-    @Query("SELECT p FROM RolePermission p WHERE ((:roleId IS NULL) OR (:roleId IS NOT NULL AND p.roleId = :roleId)) " +
-            " AND ((:status IS NULL) OR (:status IS NOT NULL AND p.status = :status)) order by p.id")
+    @Query("SELECT p FROM RolePermission p WHERE ((:roleId IS NULL) OR (:roleId IS NOT NULL AND p.roleId = :roleId)) order by p.id")
     Page<RolePermission> findRolePermission(@Param("roleId") Long roleId,
-                                            @Param("status") String status,
                                             Pageable Pageable);
     boolean existsByRoleIdAndPermissionId(Long roleId, Long permissionId);
 
-//    List<RolePermission> findByRoleIdAndIsActive(Long roleId, Boolean isActive);
 
-    @Query("SELECT rp FROM RolePermission rp WHERE rp.roleId=?1 order by rp.id" )
-    List<RolePermission> getPermissionsByRole(Long roleId);
+
+    @Query("SELECT p FROM RolePermission p WHERE ((:roleId IS NULL) OR (:roleId IS NOT NULL AND p.roleId = :roleId)) order by p.id")
+    List<RolePermission> getPermissionsByRole(@Param("roleId") Long roleId);
 
 }

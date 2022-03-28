@@ -84,7 +84,7 @@ public class RolePermissionController {
                                              @RequestParam(value = "pageSize") int pageSize){
         HttpStatus httpCode ;
         Response resp = new Response();
-        Page<RolePermission> response = service.findAll(roleId,status, PageRequest.of(page, pageSize));
+        Page<RolePermission> response = service.findAll(roleId, PageRequest.of(page, pageSize));
         resp.setCode(CustomResponseCode.SUCCESS);
         resp.setDescription("Record fetched successfully !");
         resp.setData(response);
