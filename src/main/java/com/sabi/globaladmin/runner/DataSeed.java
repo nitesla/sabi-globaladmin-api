@@ -1048,7 +1048,7 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
         sabiUser.setUsername("integration@sabi.com");
         sabiUser.setLoginAttempts(0);
         sabiUser.setUserCategory(Constants.ADMIN_USER);
-        sabiUser.setStatus(1);
+        sabiUser.setStatus("1");
         sabiUser.setPasswordChangedOn(LocalDateTime.now());
         sabiUser.setCreatedBy(0L);
         sabiUser.setCreatedDate(LocalDateTime.now());
@@ -1074,7 +1074,7 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
         user.setUsername("globalAdmin@sabi.com");
         user.setLoginAttempts(0);
         user.setUserCategory(Constants.ADMIN_USER);
-        user.setStatus(1);
+        user.setStatus("1");
         user.setPasswordChangedOn(LocalDateTime.now());
         user.setCreatedBy(0L);
         user.setCreatedDate(LocalDateTime.now());

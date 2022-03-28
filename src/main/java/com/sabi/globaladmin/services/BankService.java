@@ -53,7 +53,7 @@ public class BankService {
             throw new ConflictException(CustomResponseCode.CONFLICT_EXCEPTION, " Bank already exist");
         }
         bank.setCreatedBy(userCurrent.getId());
-        bank.setStatus(1);
+        bank.setStatus("1");
         bank = bankRepository.save(bank);
         log.debug("Create new bank - {}"+ new Gson().toJson(bank));
         return mapper.map(bank, BankResponseDto.class);

@@ -38,5 +38,5 @@ public class ApplicationModule {
 
     private Long createdBy;
     private Long updatedBy;
-    private int status;
+    private String status;
 }

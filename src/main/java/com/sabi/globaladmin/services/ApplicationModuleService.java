@@ -62,7 +62,7 @@ public class ApplicationModuleService {
             throw new ConflictException(CustomResponseCode.CONFLICT_EXCEPTION, " App module already exist");
         }
         applicationModule.setCreatedBy(userCurrent.getId());
-        applicationModule.setStatus(1);
+        applicationModule.setStatus("1");
         applicationModule = applicationModelRepository.save(applicationModule);
         log.debug("Create app module - {}"+ new Gson().toJson(applicationModule));
         return mapper.map(applicationModule, ApplicationModuleResponse.class);
@@ -106,7 +106,7 @@ public class ApplicationModuleService {
 
 
 
-    public Page<ApplicationModule> findAll(String appCode, String name,int status, PageRequest pageRequest ){
+    public Page<ApplicationModule> findAll(String appCode, String name,String status, PageRequest pageRequest ){
         Page<ApplicationModule> applicationModules = applicationModelRepository.findAppModules(appCode,name,status,pageRequest);
         if(applicationModules == null){
             throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION, " No record found !");
@@ -115,7 +115,7 @@ public class ApplicationModuleService {
     }
 
 
-    public List<ApplicationModule> getAll(String appCode, String name,int status){
+    public List<ApplicationModule> getAll(String appCode, String name,String status){
         List<ApplicationModule> applicationModules = applicationModelRepository.findAppModulesList(appCode,name,status);
         return applicationModules;
 

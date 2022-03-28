@@ -31,7 +31,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Page<User> findUsers(@Param("firstName")String firstName,
                          @Param("lastName")String lastName,
                          @Param("phone")String phone,
-                         @Param("status")int status,
+                         @Param("status")String status,
                          @Param("email")String email,
                          Pageable pageable);
 }

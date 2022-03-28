@@ -101,7 +101,7 @@ public class UserService {
         user.setUsername(request.getEmail());
         user.setCreatedBy(userCurrent.getId());
         user.setUserCategory(Constants.ADMIN_USER);
-        user.setStatus(0);
+        user.setStatus("0");
         user.setLoginAttempts(0);
         user.setResetToken(Utility.registrationCode("HHmmss"));
         user.setResetTokenExpirationDate(Utility.tokenExpiration());
@@ -208,7 +208,7 @@ public class UserService {
     }
 
 
-    public Page<User> findAll(String firstName, String lastName, String phone, int status, String email, PageRequest pageRequest ){
+    public Page<User> findAll(String firstName, String lastName, String phone, String status, String email, PageRequest pageRequest ){
         Page<User> users = userRepository.findUsers(firstName,lastName,phone,status,email,pageRequest);
         if(users == null){
             throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION, " No record found !");

@@ -18,9 +18,9 @@ public class CustomResponseCode {
     public static final String LOCKED_EXCEPTION = "423";
     public static final String NOT_FOUND_EXCEPTION = "404";
     public static final String SUCCESS = "200";
-    public static final int ACTIVE_USER = 1;
-    public static final int INACTIVE_USER = 0;
-    public static final int DEACTIVE_USER = 2;
+    public static final String ACTIVE_USER = "1";
+    public static final String INACTIVE_USER = "0";
+    public static final String DEACTIVE_USER = "2";
     public static final String CHANGE_P_REQUIRED = "15";
     public static final String INVALID_EXPIRED_CODE = "12";
     public static final String UNAUTHORIZED = "401";

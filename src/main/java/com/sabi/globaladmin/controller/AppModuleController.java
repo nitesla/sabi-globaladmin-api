@@ -76,7 +76,7 @@ public class AppModuleController {
     @GetMapping("/page")
     public ResponseEntity<Response> getAppModules(@RequestParam(value = "appCode",required = false)String appCode,
                                                 @RequestParam(value = "name",required = false)String name,
-                                                  @RequestParam(value = "status",required = false) int status,
+                                                  @RequestParam(value = "status",required = false) String status,
                                                 @RequestParam(value = "page") int page,
                                                 @RequestParam(value = "pageSize") int pageSize){
         HttpStatus httpCode ;
@@ -92,7 +92,7 @@ public class AppModuleController {
     @GetMapping("/list")
     public ResponseEntity<Response> getAll(@RequestParam(value = "appCode",required = false)String appCode,
                                            @RequestParam(value = "name",required = false)String name,
-                                           @RequestParam(value = "status",required = false) int status){
+                                           @RequestParam(value = "status",required = false) String status){
         HttpStatus httpCode ;
         Response resp = new Response();
         List<ApplicationModule> response = service.getAll(appCode,name,status);

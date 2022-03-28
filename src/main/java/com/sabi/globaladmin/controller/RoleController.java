@@ -95,7 +95,7 @@ public class RoleController {
      */
     @GetMapping("")
     public ResponseEntity<Response> getRoles(@RequestParam(value = "name",required = false)String name,
-                                             @RequestParam(value = "status",required = false)int status,
+                                             @RequestParam(value = "status",required = false)String status,
                                                        @RequestParam(value = "page") int page,
                                                        @RequestParam(value = "pageSize") int pageSize){
         HttpStatus httpCode ;

@@ -172,4 +172,11 @@ public class CoreValidations {
             throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Bank code cannot be empty");
     }
 
+    public void validateRolePermission(RolePermissionDto request) {
+
+        if (request.getRoleId() == null)
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Role id cannot be empty");
+
+    }
+
 }

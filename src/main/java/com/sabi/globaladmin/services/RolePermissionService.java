@@ -1,11 +1,11 @@
 package com.sabi.globaladmin.services;
 
-import com.sabi.globaladmin.dto.requestdto.EnableDisEnableDto;
 import com.sabi.globaladmin.dto.requestdto.RolePermissionDto;
 import com.sabi.globaladmin.dto.responsedto.RolePermissionResponseDto;
 import com.sabi.globaladmin.exceptions.ConflictException;
 import com.sabi.globaladmin.exceptions.NotFoundException;
 import com.sabi.globaladmin.model.Permission;
+import com.sabi.globaladmin.model.Role;
 import com.sabi.globaladmin.model.RolePermission;
 import com.sabi.globaladmin.model.User;
 import com.sabi.globaladmin.repository.PermissionRepository;
@@ -54,7 +54,7 @@ public class RolePermissionService {
      */
 
     public void assignPermission(RolePermissionDto request) {
-
+        coreValidations.validateRolePermission(request);
         User userCurrent = TokenService.getCurrentUserFromSecurityContext();
         List<RolePermission> rolePerm = new ArrayList<>();
         RolePermission rolePermission = new RolePermission();
@@ -107,24 +107,20 @@ public class RolePermissionService {
      * </summary>
      * <remarks>this method is responsible for getting all records in pagination</remarks>
      */
-    public Page<RolePermission> findAll(Long roleId, int status, PageRequest pageRequest) {
-        Page<RolePermission> functions = rolePermissionRepository.findRolePermission(roleId, status, pageRequest);
+    public Page<RolePermission> findAll(Long roleId, PageRequest pageRequest) {
+        Page<RolePermission> functions = rolePermissionRepository.findRolePermission(roleId, pageRequest);
         if (functions == null) {
             throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION, " No record found !");
         }
+
+        functions.getContent().forEach(rolePerm-> {
+            Role role = roleRepository.getOne(rolePerm.getRoleId());
+            rolePerm.setRoleName(role.getName());
+        });
         return functions;
     }
 
-    public void enableDisEnableState(EnableDisEnableDto request) {
-        User userCurrent = TokenService.getCurrentUserFromSecurityContext();
-        RolePermission creditLevel = rolePermissionRepository.findById(request.getId())
-                .orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
-                        "Requested creditLevel id does not exist!"));
-        creditLevel.setStatus(request.getStatus());
-        creditLevel.setUpdatedBy(userCurrent.getId());
-        rolePermissionRepository.save(creditLevel);
 
-    }
 
 
 
@@ -135,6 +131,7 @@ public class RolePermissionService {
         List<RolePermission> permissionRole = rolePermissionRepository.getPermissionsByRole(roleId);
         for (RolePermission permRole : permissionRole
                 ) {
+
             Permission permission = permissionRepository.getOne(permRole.getPermissionId());
             permRole.setPermission(permission.getName());
         }

@@ -34,7 +34,7 @@ public class Bank {
 
     private Long createdBy;
     private Long updatedBy;
-    private int status;
+    private String status;
 
     public Bank(String name, String code) {
         this.name = name;

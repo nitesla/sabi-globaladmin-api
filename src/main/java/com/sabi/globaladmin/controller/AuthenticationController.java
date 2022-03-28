@@ -93,7 +93,7 @@ public class AuthenticationController {
                                         + " " + loginStatus,
                                 AuditTrailFlag.LOGIN, "Failed Login Request by :" + loginRequest.getUsername(),1, ipAddress);
                 userService.updateFailedLogin(user.getId());
-                throw new UnauthorizedException(CustomResponseCode.UNAUTHORIZED, "Invalid Login details.");
+                throw new UnauthorizedException(CustomResponseCode.UNAUTHORIZED, "Invalid Login details."  +" Login attempt : " +user.getLoginAttempts());
             }
         } else {
             //NO NEED TO update login failed count and failed login date SINCE IT DOES NOT EXIST

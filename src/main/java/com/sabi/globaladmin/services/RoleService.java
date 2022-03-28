@@ -147,7 +147,7 @@ public class RoleService {
      * </summary>
      * <remarks>this method is responsible for getting all records in pagination</remarks>
      */
-    public Page<Role> findAll(String name,int status, PageRequest pageRequest ){
+    public Page<Role> findAll(String name,String status, PageRequest pageRequest ){
         Page<Role> roles = roleRepository.findRoles(name,status,pageRequest);
         if(roles == null){
             throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION, " No record found !");

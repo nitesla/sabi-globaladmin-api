@@ -24,7 +24,7 @@ public interface ApplicationModelRepository extends JpaRepository<ApplicationMod
             " AND ((:status IS NULL) OR (:status IS NOT NULL AND a.status =:status))")
     Page<ApplicationModule> findAppModules(@Param("appCode") String appCode,
                                          @Param("name") String name,
-                                         @Param("status") int status,
+                                         @Param("status") String status,
                                          Pageable pageable);
 
 
@@ -34,6 +34,6 @@ public interface ApplicationModelRepository extends JpaRepository<ApplicationMod
             " AND ((:status IS NULL) OR (:status IS NOT NULL AND a.status =:status))")
     List<ApplicationModule> findAppModulesList(@Param("appCode") String appCode,
                                                @Param("name") String name,
-                                               @Param("status") int status);
+                                               @Param("status") String status);
 
 }
