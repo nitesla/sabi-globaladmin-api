@@ -36,6 +36,7 @@ public class RolePermission {
 
     private Long createdBy;
     private Long updatedBy;
+    private int status;
 
     @Transient
     private String permission;
