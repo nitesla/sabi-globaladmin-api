@@ -62,16 +62,17 @@ public class RolePermissionService {
             rolePermission.setPermissionId(p.getPermissionId());
             rolePermission.setRoleId(request.getRoleId());
             rolePermission.setCreatedBy(userCurrent.getId());
+            rolePermission.setStatus(1);
             log.info(" role permission details " + rolePermission);
             RolePermission exist = rolePermissionRepository.findByRoleIdAndPermissionId(request.getRoleId(),p.getPermissionId());
             if(exist != null){
                 throw new ConflictException(CustomResponseCode.CONFLICT_EXCEPTION, " Permission id already assigned to the role ::::"+p.getPermissionId());
             }
+
             rolePermissionRepository.save(rolePermission);
             rolePerm.add(rolePermission);
 
         });
-//        return mapper.map(rolePermission, RolePermissionResponseDto.class);
     }
 
 
@@ -96,8 +97,20 @@ public class RolePermissionService {
         RolePermission rolePermission = rolePermissionRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
                         "Requested RolePermission id does not exist!"));
-//        log.info(String.valueOf(Arrays.asList(rolePermission.getPermissionId())));
-        return mapper.map(rolePermission, RolePermissionResponseDto.class);
+        Role role = roleRepository.getOne(rolePermission.getRoleId());
+        Permission permission = permissionRepository.getOne(rolePermission.getPermissionId());
+
+        RolePermissionResponseDto response = RolePermissionResponseDto.builder()
+                .permissionName(permission.getName())
+                .permissionId(rolePermission.getPermissionId())
+                .roleId(rolePermission.getRoleId())
+                .roleName(role.getName())
+                .createdBy(rolePermission.getCreatedBy())
+                .createdDate(rolePermission.getCreatedDate())
+                .updatedBy(rolePermission.getUpdatedBy())
+                .updatedDate(rolePermission.getUpdatedDate())
+                .build();
+        return response;
     }
 
 
@@ -116,6 +129,8 @@ public class RolePermissionService {
         functions.getContent().forEach(rolePerm-> {
             Role role = roleRepository.getOne(rolePerm.getRoleId());
             rolePerm.setRoleName(role.getName());
+            Permission permission = permissionRepository.getOne(rolePerm.getPermissionId());
+            rolePerm.setPermission(permission.getName());
         });
         return functions;
     }

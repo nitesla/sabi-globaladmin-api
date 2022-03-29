@@ -176,6 +176,13 @@ public class CoreValidations {
 
         if (request.getRoleId() == null)
             throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Role id cannot be empty");
+        Role role = roleRepository.findById(request.getRoleId())
+                .orElseThrow(() -> new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,
+                        " Enter a valid Role"));
+
+        if(request.getPermissionIds().isEmpty()){
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Permission id cannot be empty");
+        }
 
     }
 
