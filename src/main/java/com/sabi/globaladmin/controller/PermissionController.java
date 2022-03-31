@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping(Constants.APP_CONTENT+"global/permission")
+@RequestMapping(Constants.APP_CONTENT+"permission")
 public class PermissionController {
 
 

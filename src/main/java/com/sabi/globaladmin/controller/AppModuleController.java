@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(Constants.APP_CONTENT +"global/appmodule")
+@RequestMapping(Constants.APP_CONTENT +"appmodule")
 public class AppModuleController {
 
     private final ApplicationModuleService service;

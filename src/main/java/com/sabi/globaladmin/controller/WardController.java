@@ -21,7 +21,7 @@ import java.util.List;
 @SuppressWarnings("All")
 @Valid
 @RestController
-@RequestMapping(Constants.APP_CONTENT +"global/ward")
+@RequestMapping(Constants.APP_CONTENT +"ward")
 public class WardController {
 
     private final WardService service;
