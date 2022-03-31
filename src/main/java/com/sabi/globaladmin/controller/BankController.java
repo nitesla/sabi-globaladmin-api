@@ -21,7 +21,7 @@ import java.util.List;
 
 @SuppressWarnings("All")
 @RestController
-@RequestMapping(Constants.APP_CONTENT +"global/bank")
+@RequestMapping(Constants.APP_CONTENT +"bank")
 public class BankController {
 
 

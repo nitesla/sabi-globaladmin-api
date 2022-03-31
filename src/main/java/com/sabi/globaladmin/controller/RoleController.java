@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @SuppressWarnings("All")
 @RestController
-@RequestMapping(Constants.APP_CONTENT+"global/role")
+@RequestMapping(Constants.APP_CONTENT+"role")
 public class RoleController {
 
 

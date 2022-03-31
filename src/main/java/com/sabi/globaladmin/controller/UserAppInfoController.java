@@ -20,7 +20,7 @@ import java.util.List;
 
 @SuppressWarnings("All")
 @RestController
-@RequestMapping(Constants.APP_CONTENT +"global/appinfo")
+@RequestMapping(Constants.APP_CONTENT +"appinfo")
 public class UserAppInfoController {
 
     private final UserAppInfoService service;

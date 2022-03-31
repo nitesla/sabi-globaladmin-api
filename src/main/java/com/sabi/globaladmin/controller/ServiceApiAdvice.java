@@ -16,7 +16,7 @@ import java.nio.file.AccessDeniedException;
 
 @SuppressWarnings("ALL")
 @Slf4j
-@ControllerAdvice(annotations = RestController.class, basePackages = "com.upperlink.paygate.controller")
+@ControllerAdvice(annotations = RestController.class, basePackages = "com.sabi.globaladmin.controller")
 @ResponseBody
 public class ServiceApiAdvice {
 

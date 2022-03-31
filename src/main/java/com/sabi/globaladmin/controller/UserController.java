@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @SuppressWarnings("All")
 @RestController
-@RequestMapping(Constants.APP_CONTENT +"global/user")
+@RequestMapping(Constants.APP_CONTENT +"user")
 public class UserController {
 
     private  static final Logger logger = LoggerFactory.getLogger(UserController.class);

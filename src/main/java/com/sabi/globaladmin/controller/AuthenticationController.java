@@ -31,7 +31,7 @@ import java.util.List;
 @Slf4j
 @SuppressWarnings("All")
 @RestController
-@RequestMapping(Constants.APP_CONTENT + "global/authenticate")
+@RequestMapping(Constants.APP_CONTENT + "authenticate")
 public class AuthenticationController {
 
     private  static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
