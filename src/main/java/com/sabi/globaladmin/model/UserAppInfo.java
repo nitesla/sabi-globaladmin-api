@@ -1,6 +1,7 @@
 package com.sabi.globaladmin.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,8 +27,16 @@ public class UserAppInfo {
     private String applicationCode;
     @ApiModelProperty(hidden = true)
     private LocalDateTime actionDate = LocalDateTime.now();
+
+    @JsonIgnore
     private String authKey;
+    @JsonIgnore
+    private String authKeyExpirationDate;
     private String token;
+    @JsonIgnore
+    private String secreteKey;
+    @JsonIgnore
+    private String ivKey;
 
 
 

@@ -19,6 +19,8 @@ public interface UserAppInfoRepository extends JpaRepository<UserAppInfo, Long> 
 
     UserAppInfo findByAuthKey (String authKey);
 
+    UserAppInfo findByUserId(Long userId);
+
 
     @Query("SELECT u FROM UserAppInfo u WHERE ((:username IS NULL) OR (:username IS NOT NULL AND u.username like %:username%))" +
             " AND ((:userId IS NULL) OR (:userId IS NOT NULL AND u.userId=:userId))"+

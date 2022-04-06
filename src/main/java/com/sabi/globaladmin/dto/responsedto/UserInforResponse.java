@@ -14,14 +14,12 @@ import java.time.LocalDateTime;
 @Builder
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserAppInfoResponse {
+public class UserInforResponse {
 
     private Long id;
     private String username;
     private Long userId;
     private String applicationCode;
     private LocalDateTime actionDate;
-    private String authKey;
-    private String authKeyExpirationDate;
     private String token;
 }

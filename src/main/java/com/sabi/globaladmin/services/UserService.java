@@ -159,7 +159,7 @@ public class UserService {
 
 
 
-    public UserResponse updateUser(UserDto request,HttpServletRequest request1) {
+    public UserResponse updateUser(UpdateUserDto request,HttpServletRequest request1) {
         coreValidations.updateUser(request);
         User userCurrent = TokenService.getCurrentUserFromSecurityContext();
         User user = userRepository.findById(request.getId())
@@ -169,6 +169,7 @@ public class UserService {
         user.setUpdatedBy(userCurrent.getId());
         userRepository.save(user);
         log.debug("user record updated - {}"+ new Gson().toJson(user));
+
 
         auditTrailService
                 .logEvent(userCurrent.getUsername(),

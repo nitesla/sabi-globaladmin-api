@@ -99,8 +99,8 @@ public class AuthenticationController {
             //NO NEED TO update login failed count and failed login date SINCE IT DOES NOT EXIST
             throw new UnauthorizedException(CustomResponseCode.UNAUTHORIZED, "Login details does not exist");
         }
-//        String accessList = permissionService.getPermissionsByUserId(user.getId());
-        String accessList="";
+        String accessList = permissionService.getPermissionsGrouping(user.getId());
+//        String accessList="";
         AuthenticationWithToken authWithToken = new AuthenticationWithToken(user, null,
                 AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER,"+accessList));
         String newToken = "Bearer" +" "+this.tokenService.generateNewToken();
