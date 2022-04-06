@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -254,6 +255,40 @@ public class Utility {
             String errorMessage = "Unable to hash this string";
             throw new ProcessingException(errorMessage);
         }
+    }
+
+
+
+    public static String generateAuthKey() {
+        String saltChars = "1234567890!@$%^&*()~ASQWERTYUOPDFGHJKZXVBNM?qwertyuopasdfghjkzxcvbnm";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 20) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * saltChars.length());
+            salt.append(saltChars.charAt(index));
+        }
+        String merchantId = salt.toString();
+        return merchantId;
+    }
+
+
+    // static Random rd = new Random();
+    public static String doRandomPassword(int len) {
+        String resp = "";
+        try {
+            Random rd = new Random();
+            final String alphabet = "1234567890!@$%^&*()~ASQWERTYUOPDFGHJKZXVBNM?qwertyuopasdfghjkzxcvbnm";
+            final int N = alphabet.length();
+            int iLength = len;
+            StringBuilder sb = new StringBuilder(iLength);
+            for (int i = 0; i < iLength; i++) {
+                sb.append(alphabet.charAt(rd.nextInt(N)));
+            }
+            resp = sb.toString();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return resp;
     }
 
 

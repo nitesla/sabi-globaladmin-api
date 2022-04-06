@@ -4,6 +4,7 @@ package com.sabi.globaladmin.validations;
 import com.sabi.globaladmin.dto.requestdto.*;
 import com.sabi.globaladmin.exceptions.BadRequestException;
 import com.sabi.globaladmin.exceptions.NotFoundException;
+import com.sabi.globaladmin.model.ApplicationModule;
 import com.sabi.globaladmin.model.Country;
 import com.sabi.globaladmin.model.Role;
 import com.sabi.globaladmin.model.State;
@@ -22,14 +23,16 @@ public class CoreValidations {
     private CountryRepository countryRepository;
     private StateRepository stateRepository;
     private LGARepository lgaRepository;
+    private ApplicationModelRepository applicationModelRepository;
 
     public CoreValidations(RoleRepository roleRepository, PermissionRepository permissionRepository,CountryRepository countryRepository,
-                           StateRepository stateRepository,LGARepository lgaRepository) {
+                           StateRepository stateRepository,LGARepository lgaRepository,ApplicationModelRepository applicationModelRepository) {
         this.roleRepository = roleRepository;
         this.permissionRepository = permissionRepository;
         this.countryRepository = countryRepository;
         this.stateRepository = stateRepository;
         this.lgaRepository = lgaRepository;
+        this.applicationModelRepository = applicationModelRepository;
     }
 
     public void validateRole(RoleDto roleDto) {
@@ -87,7 +90,7 @@ public class CoreValidations {
 
 
 
-    public void updateUser(UserDto userDto) {
+    public void updateUser(UpdateUserDto userDto) {
 
         if (userDto.getFirstName() == null || userDto.getFirstName().isEmpty())
             throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "First name cannot be empty");
@@ -185,5 +188,20 @@ public class CoreValidations {
         }
 
     }
+
+
+
+    public void validateUserAppInfo(UserAppInfoDto request) {
+
+        if (request.getApplicationCode() == null || request.getApplicationCode().trim().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Application code cannot be empty");
+        ApplicationModule applicationModule = applicationModelRepository.findByAppCode(request.getApplicationCode());
+        if(applicationModule == null){
+            throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION, "Application code does not exist");
+        }
+        if (request.getToken() == null || request.getToken().isEmpty())
+            throw new BadRequestException(CustomResponseCode.BAD_REQUEST, "Token cannot be empty");
+    }
+
 
 }

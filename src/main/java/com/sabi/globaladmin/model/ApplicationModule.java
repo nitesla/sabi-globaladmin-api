@@ -39,4 +39,9 @@ public class ApplicationModule {
     private Long createdBy;
     private Long updatedBy;
     private String status;
+
+    public ApplicationModule(String appCode, String name) {
+        this.appCode = appCode;
+        this.name = name;
+    }
 }

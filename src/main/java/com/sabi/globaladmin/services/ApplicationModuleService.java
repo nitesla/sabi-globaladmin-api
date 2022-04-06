@@ -8,7 +8,6 @@ import com.sabi.globaladmin.dto.requestdto.EnableDisEnableDto;
 import com.sabi.globaladmin.dto.responsedto.ApplicationModuleResponse;
 import com.sabi.globaladmin.exceptions.ConflictException;
 import com.sabi.globaladmin.exceptions.NotFoundException;
-import com.sabi.globaladmin.model.AppCodes;
 import com.sabi.globaladmin.model.ApplicationModule;
 import com.sabi.globaladmin.model.User;
 import com.sabi.globaladmin.repository.AppCodesRepository;
@@ -53,13 +52,9 @@ public class ApplicationModuleService {
         User userCurrent = TokenService.getCurrentUserFromSecurityContext();
         ApplicationModule applicationModule = mapper.map(request,ApplicationModule.class);
 
-        AppCodes appCodeExist = appCodesRepository.findByAppCode(request.getAppCode());
-        if(appCodeExist == null){
-            throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION,"App code does not exist");
-        }
         ApplicationModule appModuleExist = applicationModelRepository.findByAppCode(request.getAppCode());
         if(appModuleExist !=null){
-            throw new ConflictException(CustomResponseCode.CONFLICT_EXCEPTION, " App module already exist");
+            throw new ConflictException(CustomResponseCode.CONFLICT_EXCEPTION, " Application already exist");
         }
         applicationModule.setCreatedBy(userCurrent.getId());
         applicationModule.setStatus("1");

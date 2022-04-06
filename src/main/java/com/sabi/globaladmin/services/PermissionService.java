@@ -4,6 +4,7 @@ package com.sabi.globaladmin.services;
 import com.google.gson.Gson;
 import com.sabi.globaladmin.dto.requestdto.PermissionDto;
 import com.sabi.globaladmin.dto.responsedto.AccessListDto;
+import com.sabi.globaladmin.dto.responsedto.AppPermissionResponse;
 import com.sabi.globaladmin.dto.responsedto.PermissionResponseDto;
 import com.sabi.globaladmin.exceptions.ConflictException;
 import com.sabi.globaladmin.exceptions.NotFoundException;
@@ -18,6 +19,7 @@ import com.sabi.globaladmin.utils.CustomResponseCode;
 import com.sabi.globaladmin.utils.Utility;
 import com.sabi.globaladmin.validations.CoreValidations;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -168,7 +170,7 @@ public class PermissionService {
             result.forEach(r -> {
                 AccessListDto userPermission = new AccessListDto();
                 userPermission.setName((String) r[0]);
-                userPermission.setAppPermission((String) r[1]);
+//                userPermission.setAppPermission((String) r[1]);
                 resultLists.add(userPermission);
 
             });
@@ -176,6 +178,28 @@ public class PermissionService {
             log.info("Error in returning object list" + var5);
         }
         return resultLists;
+
+    }
+
+
+
+    public String getPermissionsGrouping(Long userId) {
+
+        List<AppPermissionResponse> resultLists = new ArrayList<>();
+        List<Object[]> result = permissionRepository.getPermissionsGrouping(userId);
+
+        result.forEach(r -> {
+            AppPermissionResponse userPermission = new AppPermissionResponse();
+            userPermission.setAppPermission((String) r[0]);
+            resultLists.add(userPermission);
+
+        });
+
+        String accessList = StringUtils.join(resultLists, ',');
+
+        String access = accessList.replace("AppPermissionResponse","").replaceAll("[()]","")
+                .replace("name","").replace("=","").replace("appPermission","");
+        return access;
 
     }
 

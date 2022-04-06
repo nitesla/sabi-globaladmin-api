@@ -37,6 +37,9 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private AppCodesRepository appCodesRepository;
 
+    @Autowired
+    private ApplicationModelRepository applicationModelRepository;
+
 
 
 
@@ -1086,21 +1089,21 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
 
 
     private void seedAppCode() {
-        List<AppCodes> appCodes = new ArrayList<AppCodes>() {
+        List<ApplicationModule> appCodes = new ArrayList<ApplicationModule>() {
             {
-                add(new AppCodes("AG","SABI AGENT APPLICATION"));
-                add(new AppCodes("LG","SABI LOGISTICS APPLICATION"));
-                add(new AppCodes("SP","SABI SUPPLIER APPLICATION"));
-                add(new AppCodes("DC","DATA COLLECTION APPLICATION"));
-                add(new AppCodes("GA","GLOBAL ADMIN"));
+                add(new ApplicationModule("AG","SABI AGENT APPLICATION"));
+                add(new ApplicationModule("LG","SABI LOGISTICS APPLICATION"));
+                add(new ApplicationModule("SP","SABI SUPPLIER APPLICATION"));
+                add(new ApplicationModule("DC","DATA COLLECTION APPLICATION"));
+                add(new ApplicationModule("GA","GLOBAL ADMIN"));
 
             }
         };
 
         appCodes.forEach(appCode -> {
-            AppCodes fetchApp = appCodesRepository.findByAppCode(appCode.getAppCode());
+            ApplicationModule fetchApp = applicationModelRepository.findByAppCode(appCode.getAppCode());
             if (fetchApp == null) {
-                appCodesRepository.saveAndFlush(appCode);
+                applicationModelRepository.saveAndFlush(appCode);
             }
         });
     }

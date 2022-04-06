@@ -63,7 +63,7 @@ public class UserController {
      */
 
     @PutMapping("")
-    public ResponseEntity<Response> updateUser(@Validated @RequestBody  UserDto request,HttpServletRequest request1){
+    public ResponseEntity<Response> updateUser(@Validated @RequestBody  UpdateUserDto request,HttpServletRequest request1){
         HttpStatus httpCode ;
         Response resp = new Response();
         UserResponse response = service.updateUser(request,request1);

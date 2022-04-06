@@ -1,8 +1,10 @@
 package com.sabi.globaladmin.controller;
 
 
+import com.sabi.globaladmin.dto.requestdto.AuthKeyRequest;
 import com.sabi.globaladmin.dto.requestdto.UserAppInfoDto;
 import com.sabi.globaladmin.dto.responsedto.UserAppInfoResponse;
+import com.sabi.globaladmin.dto.responsedto.UserInforResponse;
 import com.sabi.globaladmin.model.UserAppInfo;
 import com.sabi.globaladmin.services.UserAppInfoService;
 import com.sabi.globaladmin.services.WhatsAppService;
@@ -46,23 +48,23 @@ public class UserAppInfoController {
 
 
 
-    @PutMapping("")
-    public ResponseEntity<Response> updateAppCode(@Validated @RequestBody  UserAppInfoDto request){
-        HttpStatus httpCode ;
-        Response resp = new Response();
-        UserAppInfoResponse response = service.updateAppInfo(request);
-        resp.setCode(CustomResponseCode.SUCCESS);
-        resp.setDescription("Update Successful");
-        resp.setData(response);
-        httpCode = HttpStatus.OK;
-        return new ResponseEntity<>(resp, httpCode);
-    }
+//    @PutMapping("")
+//    public ResponseEntity<Response> updateAppCode(@Validated @RequestBody  UserAppInfoDto request){
+//        HttpStatus httpCode ;
+//        Response resp = new Response();
+//        UserAppInfoResponse response = service.updateAppInfo(request);
+//        resp.setCode(CustomResponseCode.SUCCESS);
+//        resp.setDescription("Update Successful");
+//        resp.setData(response);
+//        httpCode = HttpStatus.OK;
+//        return new ResponseEntity<>(resp, httpCode);
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Response> getAppCode(@PathVariable Long id){
         HttpStatus httpCode ;
         Response resp = new Response();
-        UserAppInfoResponse response = service.findAppInfo(id);
+        UserInforResponse response = service.findAppInfo(id);
         resp.setCode(CustomResponseCode.SUCCESS);
         resp.setDescription("Record fetched successfully !");
         resp.setData(response);
@@ -75,7 +77,7 @@ public class UserAppInfoController {
                                                        @RequestParam(value = "applicationCode")String applicationCode){
         HttpStatus httpCode ;
         Response resp = new Response();
-        UserAppInfoResponse response = service.findByUserIdAndInfo(userId,applicationCode);
+        UserInforResponse response = service.findByUserIdAndInfo(userId,applicationCode);
         resp.setCode(CustomResponseCode.SUCCESS);
         resp.setDescription("Record fetched successfully !");
         resp.setData(response);
@@ -84,10 +86,10 @@ public class UserAppInfoController {
     }
 
     @GetMapping("/authkey")
-    public ResponseEntity<Response> getByAuthKey(@RequestParam(value = "authKey")String authKey){
+    public ResponseEntity<Response> getByAuthKey(AuthKeyRequest authKey){
         HttpStatus httpCode ;
         Response resp = new Response();
-        UserAppInfoResponse response = service.findByAuthKey(authKey);
+        UserInforResponse response = service.findByAuthKey(authKey);
         resp.setCode(CustomResponseCode.SUCCESS);
         resp.setDescription("Record fetched successfully !");
         resp.setData(response);

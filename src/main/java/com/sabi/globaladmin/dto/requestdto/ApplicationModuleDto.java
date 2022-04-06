@@ -12,4 +12,5 @@ public class ApplicationModuleDto {
     private String description;
     private String url;
     private String icons;
+    private String status;
 }
