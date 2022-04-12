@@ -46,11 +46,12 @@ public class Permission {
     private String status;
 
 
-    public Permission(String name, String menuName, String url, String permissionType, String appPermission) {
+    public Permission(String name, String menuName, String url, String permissionType, String appPermission,String status) {
         this.name = name;
         this.menuName = menuName;
         this.url = url;
         this.permissionType = permissionType;
         this.appPermission = appPermission;
+        this.status = status;
     }
 }

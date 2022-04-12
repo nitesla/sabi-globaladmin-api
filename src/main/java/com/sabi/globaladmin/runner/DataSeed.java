@@ -52,6 +52,7 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
+        seedPermissions();
         seedCountries();
         seedStates();
         seedLocalGovernments();
@@ -1115,24 +1116,24 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
     private void seedPermissions() {
         List<Permission> permissions = new ArrayList<Permission>() {
             {
-                add(new Permission("ROLE_SUPER_ADMIN","SUPER ADMIN","/","A","GA"));
-                add(new Permission("ROLE_VIEW_AUDIT","VIEW AUDIT","/","A","GA"));
-                add(new Permission("ROLE_USER_REPORT","USER REPORT","/","A","GA"));
-                add(new Permission("ROLE_VIEW_BANKS","VIEW BANKS","/","A","GA"));
-                add(new Permission("ROLE_VIEW_ADMIN_USERS","VIEW ADMIN USERS","/","A","GA"));
-                add(new Permission("ROLE_EDIT_USER","EDIT USER","/","A","GA"));
-                add(new Permission("ROLE_ASSIGN_ADMIN_PERMISSION","ASSIGN ADMIN PERMISSION","/permission","A","GA"));
-                add(new Permission("ROLE_CREATE_ADMIN_ROLE","CREATE ADMIN ROLE","/roles","A","GA"));
-                add(new Permission("ROLE_CREATE_WARD","CREATE WARD","/wards","A","GA"));
-                add(new Permission("ROLE_CHANGR_PASSWORD","CHANGE PASSWORD","/user","A","GA"));
-                add(new Permission("ROLE_ENABLE/DISENABLE","ENABLE/DISENABLE","/user","A","GA"));
-                add(new Permission("ROLE_APPINFO","APPLICATION INFO","/appinfo","A","GA"));
-                add(new Permission("ROLE_VIEW_COUNTRY","VIEW COUNTRY","/country","A","GA"));
-                add(new Permission("ROLE_VIEW_STATE","VIEW STATE","/state","A","GA"));
-                add(new Permission("ROLE_VIEW_LGA","VIEW LGA","/lga","A","GA"));
-                add(new Permission("ROLE_PERMISSION","ROLE PERMISSION","/rolepermission","A","GA"));
-                add(new Permission("ROLE_USER_APP_INFO","ROLE USER APP INFO","/userappinfo","A","GA"));
-                add(new Permission("ROLE_VIEW_PERMISSION","VIEW PERMISSION","/permission","A","GA"));
+                add(new Permission("ROLE_SUPER_ADMIN","SUPER ADMIN","/","A","GA","1"));
+                add(new Permission("ROLE_VIEW_AUDIT","VIEW AUDIT","/","A","GA","1"));
+                add(new Permission("ROLE_USER_REPORT","USER REPORT","/","A","GA","1"));
+                add(new Permission("ROLE_VIEW_BANKS","VIEW BANKS","/","A","GA","1"));
+                add(new Permission("ROLE_VIEW_ADMIN_USERS","VIEW ADMIN USERS","/","A","GA","1"));
+                add(new Permission("ROLE_EDIT_USER","EDIT USER","/","A","GA","1"));
+                add(new Permission("ROLE_ASSIGN_ADMIN_PERMISSION","ASSIGN ADMIN PERMISSION","/permission","A","GA","1"));
+                add(new Permission("ROLE_CREATE_ADMIN_ROLE","CREATE ADMIN ROLE","/roles","A","GA","1"));
+                add(new Permission("ROLE_CREATE_WARD","CREATE WARD","/wards","A","GA","1"));
+                add(new Permission("ROLE_CHANGR_PASSWORD","CHANGE PASSWORD","/user","A","GA","1"));
+                add(new Permission("ROLE_ENABLE/DISENABLE","ENABLE/DISENABLE","/user","A","GA","1"));
+                add(new Permission("ROLE_APPINFO","APPLICATION INFO","/appinfo","A","GA","1"));
+                add(new Permission("ROLE_VIEW_COUNTRY","VIEW COUNTRY","/country","A","GA","1"));
+                add(new Permission("ROLE_VIEW_STATE","VIEW STATE","/state","A","GA","1"));
+                add(new Permission("ROLE_VIEW_LGA","VIEW LGA","/lga","A","GA","1"));
+                add(new Permission("ROLE_PERMISSION","ROLE PERMISSION","/rolepermission","A","GA","1"));
+                add(new Permission("ROLE_USER_APP_INFO","ROLE USER APP INFO","/userappinfo","A","GA","1"));
+                add(new Permission("ROLE_VIEW_PERMISSION","VIEW PERMISSION","/permission","A","GA","1"));
 
             }
         };
