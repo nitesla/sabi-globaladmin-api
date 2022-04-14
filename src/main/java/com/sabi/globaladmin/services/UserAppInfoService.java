@@ -67,6 +67,17 @@ public class UserAppInfoService {
         appinfo.setIvKey(Utility.doRandomPassword(16));
         log.debug("Create app info - {}"+ new Gson().toJson(appinfo));
         appinfo = userAppInfoRepository.save(appinfo);
+            UserAppInfoResponse response = UserAppInfoResponse.builder()
+                    .actionDate(appinfo.getActionDate())
+                    .applicationCode(appinfo.getApplicationCode())
+                    .userId(appinfo.getUserId())
+                    .username(appinfo.getUsername())
+                    .token(appinfo.getToken())
+                    .authKey(AESEncryption.encryptAES(appinfo.getAuthKey(),appinfo.getSecreteKey(),appinfo.getIvKey()))
+                    .authKeyExpirationDate(appinfo.getAuthKeyExpirationDate())
+                    .build();
+            return response;
+
         }else {
             UserAppInfo updateInfo = userAppInfoRepository.getOne(exist.getId());
             updateInfo.setAuthKey(Utility.generateAuthKey());
@@ -76,19 +87,22 @@ public class UserAppInfoService {
             updateInfo.setSecreteKey(key);
             updateInfo.setIvKey(Utility.doRandomPassword(16));
             log.debug("Update app info - {}"+ new Gson().toJson(updateInfo));
-            userAppInfoRepository.save(updateInfo);
+            updateInfo=userAppInfoRepository.save(updateInfo);
+
+            UserAppInfoResponse response = UserAppInfoResponse.builder()
+                    .actionDate(updateInfo.getActionDate())
+                    .applicationCode(updateInfo.getApplicationCode())
+                    .userId(updateInfo.getUserId())
+                    .username(updateInfo.getUsername())
+                    .token(updateInfo.getToken())
+                    .authKey(AESEncryption.encryptAES(updateInfo.getAuthKey(),updateInfo.getSecreteKey(),updateInfo.getIvKey()))
+                    .authKeyExpirationDate(updateInfo.getAuthKeyExpirationDate())
+                    .build();
+            return response;
         }
-        UserAppInfo findSavedRecord = userAppInfoRepository.findByUserId(userCurrent.getId());
-        UserAppInfoResponse response = UserAppInfoResponse.builder()
-                .actionDate(findSavedRecord.getActionDate())
-                .applicationCode(findSavedRecord.getApplicationCode())
-                .userId(findSavedRecord.getUserId())
-                .username(findSavedRecord.getUsername())
-                .token(findSavedRecord.getToken())
-                .authKey(AESEncryption.encryptAES(findSavedRecord.getAuthKey(),findSavedRecord.getSecreteKey(),findSavedRecord.getIvKey()))
-                .authKeyExpirationDate(findSavedRecord.getAuthKeyExpirationDate())
-                .build();
-        return response;
+//        UserAppInfo findSavedRecord = userAppInfoRepository.findByUserId(userCurrent.getId());
+
+
     }
 
 
