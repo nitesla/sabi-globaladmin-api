@@ -85,7 +85,7 @@ public class UserAppInfoController {
         return new ResponseEntity<>(resp, httpCode);
     }
 
-    // --- TODO --- make it a post
+
     @GetMapping("/authkey")
     public ResponseEntity<Response> getByAuthKey(AuthKeyRequest authKey){
         HttpStatus httpCode ;
