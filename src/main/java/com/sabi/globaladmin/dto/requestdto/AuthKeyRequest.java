@@ -7,4 +7,6 @@ import lombok.Data;
 public class AuthKeyRequest {
 
     private String authKey;
+    private Long userId;
+    private String applicationCode;
 }
