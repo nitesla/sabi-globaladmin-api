@@ -154,8 +154,8 @@ public class UserAppInfoService {
 
 
     public UserInforResponse findByAuthKey(AuthKeyRequest authKey){
-        User userCurrent = TokenService.getCurrentUserFromSecurityContext();
-        UserAppInfo findSavedRecord = userAppInfoRepository.findByUserId(userCurrent.getId());
+//        User userCurrent = TokenService.getCurrentUserFromSecurityContext();
+        UserAppInfo findSavedRecord = userAppInfoRepository.findByUserIdAndApplicationCode(authKey.getUserId(), authKey.getApplicationCode());
         if(findSavedRecord == null){
             throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION, " No record found !");
         }
