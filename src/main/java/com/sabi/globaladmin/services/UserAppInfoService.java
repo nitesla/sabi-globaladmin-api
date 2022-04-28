@@ -13,6 +13,7 @@ import com.sabi.globaladmin.model.User;
 import com.sabi.globaladmin.model.UserAppInfo;
 import com.sabi.globaladmin.repository.ApplicationModelRepository;
 import com.sabi.globaladmin.repository.UserAppInfoRepository;
+import com.sabi.globaladmin.repository.UserRepository;
 import com.sabi.globaladmin.utils.AESEncryption;
 import com.sabi.globaladmin.utils.CustomResponseCode;
 import com.sabi.globaladmin.utils.Utility;
@@ -39,15 +40,17 @@ public class UserAppInfoService {
     private final ModelMapper mapper;
     private final ObjectMapper objectMapper;
     private final CoreValidations validations;
+    private final UserRepository userRepository;
 
     public UserAppInfoService(ApplicationModelRepository applicationModelRepository,UserAppInfoRepository userAppInfoRepository,
                               ModelMapper mapper, ObjectMapper objectMapper,
-                              CoreValidations validations) {
+                              CoreValidations validations,UserRepository userRepository) {
         this.applicationModelRepository = applicationModelRepository;
         this.userAppInfoRepository = userAppInfoRepository;
         this.mapper = mapper;
         this.objectMapper = objectMapper;
         this.validations = validations;
+        this.userRepository = userRepository;
     }
 
 
@@ -174,7 +177,24 @@ public class UserAppInfoService {
         if(appInfo == null){
             throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION, " No record found !");
         }
-        return mapper.map(appInfo,UserInforResponse.class);
+
+        User user = userRepository.getOne(appInfo.getUserId());
+
+        UserInforResponse userInforResponse = UserInforResponse.builder()
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .phone(user.getPhone())
+                .userId(appInfo.getUserId())
+                .username(appInfo.getUsername())
+                .actionDate(appInfo.getActionDate())
+                .email(user.getEmail())
+                .applicationCode(appInfo.getApplicationCode())
+                .token(appInfo.getToken())
+                .authKeyExpirationDate(appInfo.getAuthKeyExpirationDate())
+                .build();
+
+
+        return userInforResponse;
     }
 
 }
