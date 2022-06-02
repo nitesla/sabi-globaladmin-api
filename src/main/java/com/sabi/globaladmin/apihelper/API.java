@@ -73,6 +73,11 @@ public class API {
         }
     }
 
+
+
+
+
+
     public <T> T post(String url, Object requestObject, Class<T> responseClass,
                       @Nullable Map<String, String> headers) {
         HttpServerErrorException httpServerErrorException;
@@ -98,7 +103,6 @@ public class API {
             log.error("response from client (Error): " + e.getMessage());
             log.error("Failed url : " + url);
 
-//            throw new ProcessingException("response from client (Error): " + e.getMessage());
             return null;
         }
     }
