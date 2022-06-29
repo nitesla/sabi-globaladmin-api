@@ -163,4 +163,12 @@ public class RolePermissionService {
         rolePermissionRepository.delete(rolePermission);
     }
 
+
+
+
+
+    public void deleteAllBYIds(List<Long> Longs) {
+        rolePermissionRepository.deleteByIdIn(Longs);
+    }
+
 }
