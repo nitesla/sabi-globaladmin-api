@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping(Constants.APP_CONTENT+"rolepermission")
@@ -105,5 +107,21 @@ public class RolePermissionController {
         httpCode = HttpStatus.OK;
         return new ResponseEntity<>(resp, httpCode);
     }
+
+
+
+
+    @DeleteMapping("")
+    public ResponseEntity<Response> removeMultiplePermission(@RequestParam("ids") List<Long> ids){
+        HttpStatus httpCode ;
+        Response resp = new Response();
+        service.deleteAllBYIds(ids);
+        resp.setCode(CustomResponseCode.SUCCESS);
+        resp.setDescription("Permission removed successfully !");
+        httpCode = HttpStatus.OK;
+        return new ResponseEntity<>(resp, httpCode);
+    }
+
+
 
 }
