@@ -136,6 +136,11 @@ public class PermissionService {
     }
 
 
+    public PermissionResponseDto findPermissionByName(String name){
+        Permission permission = permissionRepository.findByName(name);
+        return mapper.map(permission,PermissionResponseDto.class);
+    }
+
 
 
     /** <summary>

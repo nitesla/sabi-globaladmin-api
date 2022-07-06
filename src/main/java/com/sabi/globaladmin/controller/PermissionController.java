@@ -86,6 +86,12 @@ public class PermissionController {
         return new ResponseEntity<>(resp, httpCode);
     }
 
+    @GetMapping("/permname")
+    public PermissionResponseDto getPermissionByName(String name){
+        PermissionResponseDto response = service.findPermissionByName(name);
+        return response;
+    }
+
 
     /** <summary>
      * Get all records endpoint
