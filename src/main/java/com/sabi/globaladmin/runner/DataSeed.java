@@ -52,14 +52,14 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        seedPermissions();
-        seedCountries();
-        seedStates();
-        seedLocalGovernments();
-        seedBanks();
-        seedIntegrationUsers();
-        seedAdminUser();
-        seedAppCode();
+//        seedPermissions();
+//        seedCountries();
+//        seedStates();
+//        seedLocalGovernments();
+//        seedBanks();
+//        seedIntegrationUsers();
+//        seedAdminUser();
+//        seedAppCode();
 
     }
 
@@ -1211,6 +1211,10 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
                 add(new Permission("ROLE_UPDATE_WAREHOUSE_USER","ROLE UPDATE WAREHOUSE USER","/api/v1/warehouseuser","U","LG","1"));
                 add(new Permission("ROLE_VIEW_WAREHOUSE_USER",  "ROLE VIEW WAREHOUSE USER","/api/v1/warehouseuser?page=&pageSize=","U","LG","1"));
                 add(new Permission("ROLE_MANAGE_WAREHOUSE_USER","ROLE MANAGE WAREHOUSE USER","/api/v1/warehouseuser/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_PARTNER_ADMIN","PARTNER ADMIN","/","A","LG","1"));
+
+
+
 
             }
         };
