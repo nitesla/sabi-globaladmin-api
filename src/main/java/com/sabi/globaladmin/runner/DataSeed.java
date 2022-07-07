@@ -52,14 +52,14 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-//        seedPermissions();
-//        seedCountries();
-//        seedStates();
-//        seedLocalGovernments();
-//        seedBanks();
-//        seedIntegrationUsers();
-//        seedAdminUser();
-//        seedAppCode();
+        seedPermissions();
+        seedCountries();
+        seedStates();
+        seedLocalGovernments();
+        seedBanks();
+        seedIntegrationUsers();
+        seedAdminUser();
+        seedAppCode();
 
     }
 
@@ -1212,6 +1212,101 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
                 add(new Permission("ROLE_VIEW_WAREHOUSE_USER",  "ROLE VIEW WAREHOUSE USER","/api/v1/warehouseuser?page=&pageSize=","U","LG","1"));
                 add(new Permission("ROLE_MANAGE_WAREHOUSE_USER","ROLE MANAGE WAREHOUSE USER","/api/v1/warehouseuser/enabledisable","U","LG","1"));
                 add(new Permission("ROLE_PARTNER_ADMIN","PARTNER ADMIN","/","A","LG","1"));
+
+                add(new Permission("ALLOCATION", "CREATE_ALLOCATION", "/api/v1/allocations", "A", "LG", "1"));
+                add(new Permission("ALLOCATION"	,"UPDATE_ALLOCATION", "/api/v1/allocations", "A","LG","1"));
+                add(new Permission("ALLOCATION"	,"VIEW_ALLOCATION", "/api/v1/allocations?page=&pageSize=", "A","LG","1"));
+                add(new Permission("ALLOCATION"	,"MANAGE_ALLOCATION", "/api/v1/allocations/enabledisenable", "A","LG","1"));
+                add(new Permission("AUDIT TRAIL", "VIEW_AUDIT",	"/api/v1/audit?page=&pageSize=",  "A","LG","1"));
+                add(new Permission("BLOCK TYPE" ,"CREATE_BLOCKTYPE",	"/api/v1/blocktypes", "A","LG","1"));
+                add(new Permission("BLOCK TYPE" ,"UPDATE_BLOCKTYPE",	"/api/v1/blocktypes", "A","LG","1"));
+                add(new Permission("BLOCK TYPE" ,"VIEW_BLOCKTYPE",	    "/api/v1/blocktypes?page=&pageSize=", "A","LG","1"));
+                add(new Permission("BLOCK TYPE" ,"MANAGE_BLOCKTYPE",	"/api/v1/blocktypes/enabledisenabe", "A","LG","1"));
+                add(new Permission("BRAND" ,"CREATE_BRAND",	"/api/v1/brand", "A","LG","1"));
+                add(new Permission("BRAND" ,"UPDATE_BRAND",	"/api/v1/brand", "A","LG","1"));
+                add(new Permission("BRAND" ,"VIEW_BRAND",	"/api/v1/brand?page=&pageSize=", "A","LG","1"));
+                add(new Permission("BRAND" ,"MANAGE_BRAND",	"/api/v1/brand/enabledisenable", "A","LG","1"));
+                add(new Permission("CATEGORY" ,"CREATE_CATEGORY",	"/api/v1/partnercategory", "A","LG","1"));
+                add(new Permission("CATEGORY" ,"UPDATE_CATEGORY",	"/api/v1/partnercategory", "A","LG","1"));
+                add(new Permission("CATEGORY" ,"VIEW_CATEGORY",	    "/api/v1/partnercategory?page=&pageSize= ", "A","LG","1"));
+                add(new Permission("CATEGORY" ,"MANAGE_CATEGORY",	"/api/v1/partnercategory/enabledisenable", "U","LG","1"));
+                add(new Permission("CLIENT" ,"CREATE_CLIENT",	"/api/v1/clients", "A","LG","1"));
+                add(new Permission("CLIENT" ,"UPDATE_CLIENT",	"/api/v1/clients", "A","LG","1"));
+                add(new Permission("CLIENT" ,"VIEW_CLIENT",	    "/api/v1/clients?page=&pageSize=", "A","LG","1"));
+                add(new Permission("CLIENT" ,"MANAGE_CLIENT",	"/api/v1/clients/enabledisenable", "A","LG","1"));
+                add(new Permission("COLOR" ,"CREATE_COLOR",	"/api/v1/color", "A","LG","1"));
+                add(new Permission("COLOR" ,"UPDATE_COLOR",	"/api/v1/color", "A","LG","1"));
+                add(new Permission("COLOR" ,"VIEW_COLOR",	"/api/v1/color?page=&pageSize=", "A","LG","1"));
+                add(new Permission("COLOR" ,"MANAGE_COLOR",	"/api/v1/color/enabledisenable", "A","LG","1"));
+                add(new Permission("BANK" ,"VIEW_BANK",	"/api/v1/bank?page=&pageSize=", "A","LG","1"));
+                add(new Permission("COUNTRY" ,"VIEW_COUNTRY",	"/api/v1/country?page=&pageSize=", "A","LG","1"));
+                add(new Permission("DASHBOARD" ,"VIEW_DASHBOARD",	"/api/v1/dashboard?page=&pageSize=", "A","LG","1"));
+                add(new Permission("DRIVER ASSET" ,"CREATE_DRIVER_ASSET",	"/api/v1/driverasset", "A","LG","1"));
+                add(new Permission("DRIVER ASSET" ,"UPDATE_DRIVER_ASSET",	"/api/v1/driverasset", "A","LG","1"));
+                add(new Permission("DRIVER ASSET" ,"VIEW_DRIVER_ASSET",	    "/api/v1/driverasset?page=&pageSize=", "A","LG","1"));
+                add(new Permission("DRIVER ASSET" ,"MANAGE_DRIVER_ASSET",	"/api/v1/driverasset/enabledisenable", "A","LG","1"));
+                add(new Permission("DRIVER WALLET" ,"CREATE_DRIVER_WALLET",	"/api/v1/driverwallet", "A","LG","1"));
+                add(new Permission("DRIVER WALLET" ,"UPDATE_DRIVER_WALLET",	"/api/v1/driverwallet", "A","LG","1"));
+                add(new Permission("DRIVER WALLET" ,"VIEW_DRIVER_WALLET",	"/api/v1/driverwallet?page=&pageSize=", "A","LG","1"));
+                add(new Permission("DRIVER WALLET" ,"MANAGE_DRIVER_WALLET",	"/api/v1/driverwallet/enabledisenable", "A","LG","1"));
+                add(new Permission("DROPOFF" ,"CREATE_DROPOFF",	"/api/v1/dropoff", "A","LG","1"));
+                add(new Permission("DROPOFF" ,"UPDATE_DROPOFF",	"/api/v1/dropoff", "A","LG","1"));
+                add(new Permission("DROPOFF" ,"VIEW_DROPOFF",	"/api/v1/dropoff?page=&pageSize=", "A","LG","1"));
+                add(new Permission("DROPOFF" ,"MANAGE_DROPOFF",	"/api/v1/dropoff/enabledisenable", "A","LG","1"));
+                add(new Permission("DROPOFFITEM" ,"CREATE_DROPOFFITEM",	"/api/v1/dropoffitem", "A","LG","1"));
+                add(new Permission("DROPOFFITEM" ,"UPDATE_DROPOFFITEM",	"/api/v1/dropoffitem", "A","LG","1"));
+                add(new Permission("DROPOFFITEM" ,"VIEW_DROPOFFITEM",	"/api/v1/dropoffitem?page=&pageSize=", "A","LG","1"));
+                add(new Permission("DROPOFFITEM" ,"MANAGE_DROPOFFITE",	"/api/v1/dropoffitem/enabledisenable", "A","LG","1"));
+                add(new Permission("FULFILLMENT DASHBOARD" ,"VIEW_FULFILLMENT_DASHBOARD",	"/api/v1/fulfillmentdashboard?page=&pageSize=", "A","LG","1"));
+                add(new Permission("INVENTORY" ,"CREATE_INVENTORY",	"/api/v1/inventory", "A","LG","1"));
+                add(new Permission("INVENTORY" ,"UPDATE_INVENTORY",	"/api/v1/inventory", "A","LG","1"));
+                add(new Permission("INVENTORY" ,"VIEW_INVENTORY",	"/api/v1/inventory?page=&pageSize=", "A","LG","1"));
+                add(new Permission("INVENTORY" ,"MANAGE_INVENTORY",	"/api/v1/inventory/enabledisenable", "A","LG","1"));
+                add(new Permission("LGA" ,"VIEW_LGA",	"/api/v1/lgsa?page=&pageSize=", "A","LG","1"));
+                add(new Permission("ORDER" ,"CREATE_ORDER",	"/api/v1/order", "A","LG","1"));
+                add(new Permission("ORDER" ,"UPDATE_ORDER",	"/api/v1/order", "A","LG","1"));
+                add(new Permission("ORDER" ,"VIEW_ORDER",	"/api/v1/order?page=&pageSize=", "A","LG","1"));
+                add(new Permission("ORDER" ,"MANAGE_ORDER",	"/api/v1/order/enabledisenable", "A","LG","1"));
+                add(new Permission("ORDERITEM" ,"CREATE_ORDERITEM",	"/api/v1/orderitem", "A","LG","1"));
+                add(new Permission("ORDERITEM" ,"UPDATE_ORDERITEM",	"/api/v1/orderitem", "A","LG","1"));
+                add(new Permission("ORDERITEM" ,"VIEW_ORDERITEM",	"/api/v1/orderitem?page=&pageSize=", "A","LG","1"));
+                add(new Permission("ORDERITEM" ,"MANAGE_ORDERITER",	"/api/v1/orderitem/enabledisenable", "A","LG","1"));
+                add(new Permission("PARTNER ASSET PICTURE" ,"CREATE_ASSET_PICTURE",	"/api/v1/assetpicture", "A","LG","1"));
+                add(new Permission("PARTNER ASSET PICTURE" ,"UPDATE_ASSET_PICTURE",	"/api/v1/assetpicture", "A","LG","1"));
+                add(new Permission("PARTNER ASSET PICTURE" ,"VIEW_ASSET_PICTURE",	"/api/v1/assetpicture?page=&pageSize=", "A","LG","1"));
+                add(new Permission("PARTNER ASSET PICTURE" ,"MANAGE_ASSET_PICTURE",	"/api/v1/assetpicture/enabledisenable", "A","LG","1"));
+                add(new Permission("PARTNER ASSET " ,"CREATE_PARTNER_ASSET",	"/api/v1/partnerasset", "A","LG","1"));
+                add(new Permission("PARTNER ASSET " ,"UPDATE_PARTNER_ASSET",	"/api/v1/partnerasset", "A","LG","1"));
+                add(new Permission("PARTNER ASSET " ,"VIEW_PARTNER_ASSET",	    "/api/v1/partnerasset?page=&pageSize=", "A","LG","1"));
+                add(new Permission("PARTNER ASSET " ,"MANAGE_PARTNER_ASSET",	"/api/v1/partnerasset/enabledisenable", "A","LG","1"));
+                add(new Permission("PARTNER ASSET TYPE" ,"CREATE_PARTNER_ASSET_TYPE",	"/api/v1/partnerassettype", "A","LG","1"));
+                add(new Permission("PARTNER ASSET TYPE" ,"UPDATE_PARTNER_ASSET_TYPE",	"/api/v1/partnerassettype", "A","LG","1"));
+                add(new Permission("PARTNER ASSET TYPE" ,"VIEW_PARTNER_ASSET_TYPE",	    "/api/v1/partnerassettype?page=&pageSize=", "A","LG","1"));
+                add(new Permission("PARTNER ASSET TYPE" ,"MANAGE_PARTNER_ASSET_TYPE",	"/api/v1/partnerassettype/enabledisenable", "U","LG","1"));
+                add(new Permission("PARTNER BANK" ,"CREATE_PARTNER_BANK",	"/api/v1/partnercategories", "A","LG","1"));
+                add(new Permission("PARTNER BANK" ,"UPDATE_PARTNER_BANK",	"/api/v1/partnercategories", "A","LG","1"));
+                add(new Permission("PARTNER BANK" ,"VIEW_PARTNER_BANK",	    "/api/v1/partnercategories?page=&pageSize=", "A","LG","1"));
+                add(new Permission("PARTNER BANK" ,"MANAGE_PARTNER_BANK",	"/api/v1/partnercategories/enabledisenable", "A","LG","1"));
+                add(new Permission("PARTNER" ,"SIGNUP_PARTNER",	            "/api/v1/partner/signup", "A","LG","1"));
+                add(new Permission("PARTNER" ,"EXTERNAL_SIGNUP_PARTNER",	"/api/v1/partner/externalsignup", "A","LG","1"));
+                add(new Permission("PARTNER" ,"COMPLETE_SIGNUP_PARTNER",	"/api/v1/partner/completesignup", "A","LG","1"));
+                add(new Permission("PARTNER" ,"PASSWORD_ACTIVATION_PARTNER","/api/v1/partner/passwordactivation", "A","LG","1"));
+                add(new Permission("PARTNER" ,"CREATE_PARTNER",	            "/api/v1/partner", "A","LG","1"));
+                add(new Permission("PARTNER" ,"UPDATE_PARTNER",	            "/api/v1/partner", "A","LG","1"));
+                add(new Permission("PARTNER" ,"VIEW_PARTNER",	            "/api/v1/partner?page=&pageSize=", "A","LG","1"));
+                add(new Permission("PARTNER CATEGORIES" ,"CREATE_PARTNER_CATEGORIES",	"/api/v1/partnercategories", "A","LG","1"));
+                add(new Permission("PARTNER CATEGORIES" ,"UPDATE_PARTNER_CATEGORIES",	"/api/v1/partnercategories", "A","LG","1"));
+                add(new Permission("PARTNER CATEGORIES" ,"VIEW_PARTNER_CATEGORIES",	    "/api/v1/partnercategories?page=&pageSize=", "A","LG","1"));
+                add(new Permission("PARTNER CATEGORIES" ,"MANAGE_PARTNER_CATEGORIES",	"/api/v1/partnercategories/enabledisenable", "A","LG","1"));
+                add(new Permission("PARTNER LOCATION" ,"CREATE_PARTNER_LOCATION",	"/api/v1/partnerlocation", "A","LG","1"));
+                add(new Permission("PARTNER LOCATION" ,"UPDATE_PARTNER_LOCATION",	"/api/v1/partnerlocation", "A","LG","1"));
+                add(new Permission("PARTNER LOCATION" ,"VIEW_PARTNER_LOCATION",	    "/api/v1/partnerlocation?page=&pageSize=", "A","LG","1"));
+                add(new Permission("PARTNER LOCATION" ,"MANAGE_PARTNER_LOCATION",	"/api/v1/partnerlocation/enabledisenable", "A","LG","1"));
+                add(new Permission("PARTNER ROLE" ,"CREATE_PARTNER_ROLE",	"/api/v1/partnerrole", "A","LG","1"));
+                add(new Permission("PARTNER ROLE" ,"VIEW_PARTNER_ROLE",	    "/api/v1/partnerrole?page=&pageSize=", "A","LG","1"));
+                add(new Permission("PARTNER USER" ,"CREATE_PARTNER_USER",	"/api/v1/partneruser", "A","LG","1"));
+                add(new Permission("PARTNER USER" ,"ACTIVATE_PARTNER_USER",	"/api/v1/partneruser/activatepartneruser", "A","LG","1"));
+                add(new Permission("PARTNER USER" ,"VIEW_PARTNER_USER",	    "/api/v1/partneruser/page?page=&pageSize=", "A","LG","1"));
 
 
 
