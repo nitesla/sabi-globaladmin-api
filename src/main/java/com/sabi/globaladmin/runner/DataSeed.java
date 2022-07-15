@@ -1131,87 +1131,87 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
                 add(new Permission("ROLE_VIEW_COUNTRY","VIEW COUNTRY","/country","A","GA","1"));
                 add(new Permission("ROLE_VIEW_STATE","VIEW STATE","/state","A","GA","1"));
                 add(new Permission("ROLE_VIEW_LGA","VIEW LGA","/lga","A","GA","1"));
-                add(new Permission("ROLE_PERMISSION","ROLE PERMISSION","/rolepermission","A","GA","1"));
-                add(new Permission("ROLE_USER_APP_INFO","ROLE USER APP INFO","/userappinfo","A","GA","1"));
+                add(new Permission("ROLE_PERMISSION","PERMISSION","/rolepermission","A","GA","1"));
+                add(new Permission("ROLE_USER_APP_INFO","USER APP INFO","/userappinfo","A","GA","1"));
                 add(new Permission("ROLE_VIEW_PERMISSION","VIEW PERMISSION","/permission","A","GA","1"));
 
-                add(new Permission("ROLE_CREATE_PAYMENT_TERMS","ROLE CREATE PAYMENT TERMS","/api/v1/paymentterms","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_PAYMENT_TERMS","ROLE UPDATE PAYMENT TERMS","/api/v1/paymentterms","U","LG","1"));
-                add(new Permission("ROLE_VIEW_PAYMENT_TERMS","ROLE VIEW PAYMENT TERMS","/api/v1/paymentterms?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_PAYMENT_TERMS","ROLE MANAGE PAYMENT TERMS","/api/v1/paymentterms/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_PAYMENT_TERMS","CREATE PAYMENT TERMS","/api/v1/paymentterms","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_PAYMENT_TERMS","UPDATE PAYMENT TERMS","/api/v1/paymentterms","U","LG","1"));
+                add(new Permission("ROLE_VIEW_PAYMENT_TERMS","VIEW PAYMENT TERMS","/api/v1/paymentterms?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_PAYMENT_TERMS","MANAGE PAYMENT TERMS","/api/v1/paymentterms/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_PREFERENCE","ROLE CREATE PREFERENCE","/api/v1/preference","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_PREFERENCE","ROLE UPDATE PREFERENCE","/api/v1/preference","U","LG","1"));
-                add(new Permission("ROLE_VIEW_PREFERENCE","ROLE VIEW PREFERENCE","/api/v1/preference?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_PREFERENCE","ROLE MANAGE PREFERENCE","/api/v1/preference/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_PREFERENCE","CREATE PREFERENCE","/api/v1/preference","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_PREFERENCE","UPDATE PREFERENCE","/api/v1/preference","U","LG","1"));
+                add(new Permission("ROLE_VIEW_PREFERENCE","VIEW PREFERENCE","/api/v1/preference?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_PREFERENCE","MANAGE PREFERENCE","/api/v1/preference/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_PRICING_CONFIGURATION","ROLE CREATE PRICING CONFIGURATION","/api/v1/pricingconfiguration","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_PRICING_CONFIGURATION","ROLE UPDATE PRICING CONFIGURATION","/api/v1/pricingconfiguration","U","LG","1"));
-                add(new Permission("ROLE_VIEW_PRICING_CONFIGURATION","ROLE VIEW PRICING CONFIGURATION","/api/v1/pricingconfiguration?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_PRICING_CONFIGURATION","ROLE MANAGE PRICING CONFIGURATION","/api/v1/pricingconfiguration/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_PRICING_CONFIGURATION","CREATE PRICING CONFIGURATION","/api/v1/pricingconfiguration","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_PRICING_CONFIGURATION","UPDATE PRICING CONFIGURATION","/api/v1/pricingconfiguration","U","LG","1"));
+                add(new Permission("ROLE_VIEW_PRICING_CONFIGURATION","VIEW PRICING CONFIGURATION","/api/v1/pricingconfiguration?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_PRICING_CONFIGURATION","MANAGE PRICING CONFIGURATION","/api/v1/pricingconfiguration/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_PRICING_ITEMS","ROLE CREATE PRICING ITEMS","/api/v1/pricingitems","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_PRICING_ITEMS","ROLE UPDATE PRICING ITEMS","/api/v1/pricingitems","U","LG","1"));
-                add(new Permission("ROLE_VIEW_PRICING_ITEMS","ROLE VIEW PRICING ITEMS","/api/v1/pricingitems?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_PRICING_ITEMS","ROLE MANAGE PRICING ITEMS","/api/v1/pricingitems/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_PRICING_ITEMS","CREATE PRICING ITEMS","/api/v1/pricingitems","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_PRICING_ITEMS","UPDATE PRICING ITEMS","/api/v1/pricingitems","U","LG","1"));
+                add(new Permission("ROLE_VIEW_PRICING_ITEMS","VIEW PRICING ITEMS","/api/v1/pricingitems?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_PRICING_ITEMS","MANAGE PRICING ITEMS","/api/v1/pricingitems/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_PRODUCT","ROLE CREATE PRODUCT","/api/v1/product","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_PRODUCT","ROLE UPDATE PRODUCT","/api/v1/product","U","LG","1"));
-                add(new Permission("ROLE_VIEW_PRODUCT","ROLE VIEW PRODUCT","/api/v1/product?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_PRODUCT","ROLE MANAGE PRODUCT","/api/v1/product/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_PRODUCT","CREATE PRODUCT","/api/v1/product","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_PRODUCT","UPDATE PRODUCT","/api/v1/product","U","LG","1"));
+                add(new Permission("ROLE_VIEW_PRODUCT","VIEW PRODUCT","/api/v1/product?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_PRODUCT","MANAGE PRODUCT","/api/v1/product/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_REJECT_REASON","ROLE CREATE REJECT REASON","/api/v1/rejectreason","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_REJECT_REASON","ROLE UPDATE REJECT REASON","/api/v1/rejectreason","U","LG","1"));
-                add(new Permission("ROLE_VIEW_REJECT_REASON",  "ROLE VIEW REJECT REASON","/api/v1/rejectreason?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_REJECT_REASON","ROLE MANAGE REJECT REASON","/api/v1/rejectreason/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_REJECT_REASON","CREATE REJECT REASON","/api/v1/rejectreason","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_REJECT_REASON","UPDATE REJECT REASON","/api/v1/rejectreason","U","LG","1"));
+                add(new Permission("ROLE_VIEW_REJECT_REASON",  "VIEW REJECT REASON","/api/v1/rejectreason?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_REJECT_REASON","MANAGE REJECT REASON","/api/v1/rejectreason/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_ROUTE_LOCATION","ROLE CREATE ROUTE LOCATION","/api/v1/routelocation","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_ROUTE_LOCATION","ROLE UPDATE ROUTE LOCATION","/api/v1/routelocation","U","LG","1"));
-                add(new Permission("ROLE_VIEW_ROUTE_LOCATION",  "ROLE VIEW ROUTE LOCATION","/api/v1/routelocation?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_ROUTE_LOCATION","ROLE MANAGE ROUTE LOCATION","/api/v1/routelocation/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_ROUTE_LOCATION","CREATE ROUTE LOCATION","/api/v1/routelocation","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_ROUTE_LOCATION","UPDATE ROUTE LOCATION","/api/v1/routelocation","U","LG","1"));
+                add(new Permission("ROLE_VIEW_ROUTE_LOCATION",  "VIEW ROUTE LOCATION","/api/v1/routelocation?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_ROUTE_LOCATION","MANAGE ROUTE LOCATION","/api/v1/routelocation/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_VIEW_STATE",  "ROLE VIEW STATE","/api/v1/state?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_VIEW_STATE",  "VIEW STATE","/api/v1/state?page=&pageSize=","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_TOLL_PRICES","ROLE CREATE TOLL PRICES","/api/v1/tollprice","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_TOLL_PRICES","ROLE UPDATE TOLL PRICES","/api/v1/tollprice","U","LG","1"));
-                add(new Permission("ROLE_VIEW_TOLL_PRICES",  "ROLE VIEW TOLL PRICES","/api/v1/tollprice?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_TOLL_PRICES","ROLE MANAGE TOLL PRICES","/api/v1/tollprice/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_TOLL_PRICES","CREATE TOLL PRICES","/api/v1/tollprice","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_TOLL_PRICES","UPDATE TOLL PRICES","/api/v1/tollprice","U","LG","1"));
+                add(new Permission("ROLE_VIEW_TOLL_PRICES",  "VIEW TOLL PRICES","/api/v1/tollprice?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_TOLL_PRICES","MANAGE TOLL PRICES","/api/v1/tollprice/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_TRIP_REQUEST","ROLE CREATE TRIP REQUEST","/api/v1/triprequest","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_TRIP_REQUEST","ROLE UPDATE TRIP REQUEST","/api/v1/triprequest","U","LG","1"));
-                add(new Permission("ROLE_VIEW_TRIP_REQUEST",  "ROLE VIEW TRIP REQUEST","/api/v1/triprequest?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_TRIP_REQUEST","ROLE MANAGE TRIP REQUEST","/api/v1/triprequest/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_TRIP_REQUEST","CREATE TRIP REQUEST","/api/v1/triprequest","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_TRIP_REQUEST","UPDATE TRIP REQUEST","/api/v1/triprequest","U","LG","1"));
+                add(new Permission("ROLE_VIEW_TRIP_REQUEST",  "VIEW TRIP REQUEST","/api/v1/triprequest?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_TRIP_REQUEST","MANAGE TRIP REQUEST","/api/v1/triprequest/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_TRIP_REQUEST_RESPONSE","ROLE CREATE TRIP REQUEST RESPONSE","/api/v1/triprequestresponse","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_TRIP_REQUEST_RESPONSE","ROLE UPDATE TRIP REQUEST RESPONSE","/api/v1/triprequestresponse","U","LG","1"));
-                add(new Permission("ROLE_VIEW_TRIP_REQUEST_RESPONSE",  "ROLE VIEW TRIP REQUEST RESPONSE","/api/v1/triprequestresponse?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_TRIP_REQUEST_RESPONSE","ROLE MANAGE TRIP REQUEST RESPONSE","/api/v1/triprequestresponse/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_TRIP_REQUEST_RESPONSE","CREATE TRIP REQUEST RESPONSE","/api/v1/triprequestresponse","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_TRIP_REQUEST_RESPONSE","UPDATE TRIP REQUEST RESPONSE","/api/v1/triprequestresponse","U","LG","1"));
+                add(new Permission("ROLE_VIEW_TRIP_REQUEST_RESPONSE",  "VIEW TRIP REQUEST RESPONSE","/api/v1/triprequestresponse?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_TRIP_REQUEST_RESPONSE","MANAGE TRIP REQUEST RESPONSE","/api/v1/triprequestresponse/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_USER","ROLE CREATE USER","/api/v1/user","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_USER","ROLE UPDATE USER","/api/v1/user","U","LG","1"));
-                add(new Permission("ROLE_VIEW_USER","ROLE VIEW USER","/api/v1/user?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_USER","ROLE MANAGE USER","/api/v1/user/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_USER","CREATE USER","/api/v1/user","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_USER","UPDATE USER","/api/v1/user","U","LG","1"));
+                add(new Permission("ROLE_VIEW_USER","VIEW USER","/api/v1/user?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_USER","MANAGE USER","/api/v1/user/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_WALLET_TRANSACTION","ROLE CREATE WALLET TRANSACTION","/api/v1/wallettransaction","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_WALLET_TRANSACTION","ROLE UPDATE WALLET TRANSACTION","/api/v1/wallettransaction","U","LG","1"));
-                add(new Permission("ROLE_VIEW_WALLET_TRANSACTION",  "ROLE VIEW WALLET TRANSACTION","/api/v1/wallettransaction?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_WALLET_TRANSACTION","ROLE MANAGE WALLET TRANSACTION","/api/v1/wallettransaction/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_WALLET_TRANSACTION","CREATE WALLET TRANSACTION","/api/v1/wallettransaction","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_WALLET_TRANSACTION","UPDATE WALLET TRANSACTION","/api/v1/wallettransaction","U","LG","1"));
+                add(new Permission("ROLE_VIEW_WALLET_TRANSACTION",  "VIEW WALLET TRANSACTION","/api/v1/wallettransaction?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_WALLET_TRANSACTION","MANAGE WALLET TRANSACTION","/api/v1/wallettransaction/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_WAREHOUSE_PICTURE","ROLE CREATE WAREHOUSE PICTURE","/api/v1/warehousepicture","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_WAREHOUSE_PICTURE","ROLE UPDATE WAREHOUSE PICTURE","/api/v1/warehousepicture","U","LG","1"));
-                add(new Permission("ROLE_VIEW_WAREHOUSE_PICTURE",  "ROLE VIEW WAREHOUSE PICTURE","/api/v1/warehousepicture?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_WAREHOUSE_PICTURE","ROLE MANAGE WAREHOUSE PICTURE","/api/v1/warehousepicture/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_WAREHOUSE_PICTURE","CREATE WAREHOUSE PICTURE","/api/v1/warehousepicture","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_WAREHOUSE_PICTURE","UPDATE WAREHOUSE PICTURE","/api/v1/warehousepicture","U","LG","1"));
+                add(new Permission("ROLE_VIEW_WAREHOUSE_PICTURE",  "VIEW WAREHOUSE PICTURE","/api/v1/warehousepicture?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_WAREHOUSE_PICTURE","MANAGE WAREHOUSE PICTURE","/api/v1/warehousepicture/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_WAREHOUSE_PRODUCT","ROLE CREATE WAREHOUSE PRODUCT","/api/v1/warehouseproduct","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_WAREHOUSE_PRODUCT","ROLE UPDATE WAREHOUSE PRODUCT","/api/v1/warehouseproduct","U","LG","1"));
-                add(new Permission("ROLE_VIEW_WAREHOUSE_PRODUCT",  "ROLE VIEW WAREHOUSE PRODUCT","/api/v1/warehouseproduct?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_WAREHOUSE_PRODUCT","ROLE MANAGE WAREHOUSE PRODUCT","/api/v1/warehouseproduct/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_CREATE_WAREHOUSE_PRODUCT","CREATE WAREHOUSE PRODUCT","/api/v1/warehouseproduct","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_WAREHOUSE_PRODUCT","UPDATE WAREHOUSE PRODUCT","/api/v1/warehouseproduct","U","LG","1"));
+                add(new Permission("ROLE_VIEW_WAREHOUSE_PRODUCT",  "VIEW WAREHOUSE PRODUCT","/api/v1/warehouseproduct?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_WAREHOUSE_PRODUCT","MANAGE WAREHOUSE PRODUCT","/api/v1/warehouseproduct/enabledisable","U","LG","1"));
 
-                add(new Permission("ROLE_CREATE_WAREHOUSE_USER","ROLE CREATE WAREHOUSE USER","/api/v1/warehouseuser","U","LG","1"));
-                add(new Permission("ROLE_UPDATE_WAREHOUSE_USER","ROLE UPDATE WAREHOUSE USER","/api/v1/warehouseuser","U","LG","1"));
-                add(new Permission("ROLE_VIEW_WAREHOUSE_USER",  "ROLE VIEW WAREHOUSE USER","/api/v1/warehouseuser?page=&pageSize=","U","LG","1"));
-                add(new Permission("ROLE_MANAGE_WAREHOUSE_USER","ROLE MANAGE WAREHOUSE USER","/api/v1/warehouseuser/enabledisable","U","LG","1"));
-                add(new Permission("ROLE_PARTNER_ADMIN","PARTNER ADMIN","/","A","LG","1"));
+                add(new Permission("ROLE_CREATE_WAREHOUSE_USER","CREATE WAREHOUSE USER","/api/v1/warehouseuser","U","LG","1"));
+                add(new Permission("ROLE_UPDATE_WAREHOUSE_USER","UPDATE WAREHOUSE USER","/api/v1/warehouseuser","U","LG","1"));
+                add(new Permission("ROLE_VIEW_WAREHOUSE_USER",  "VIEW WAREHOUSE USER","/api/v1/warehouseuser?page=&pageSize=","U","LG","1"));
+                add(new Permission("ROLE_MANAGE_WAREHOUSE_USER","MANAGE WAREHOUSE USER","/api/v1/warehouseuser/enabledisable","U","LG","1"));
+                add(new Permission("ROLE_PARTNER_ADMIN","PARTNER ADMIN","/","A","LG","0"));
 
                 add(new Permission("ALLOCATION", "CREATE_ALLOCATION", "/api/v1/allocations", "A", "AG", "1"));
                 add(new Permission("ALLOCATION"	,"UPDATE_ALLOCATION", "/api/v1/allocations", "A","AG","1"));

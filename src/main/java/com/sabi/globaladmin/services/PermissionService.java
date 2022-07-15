@@ -149,7 +149,7 @@ public class PermissionService {
      * <remarks>this method is responsible for getting all records in pagination</remarks>
      */
     public Page<Permission> findAll(String name,String appPermission, PageRequest pageRequest ){
-        Page<Permission> functions = permissionRepository.findFunctions(name,appPermission,pageRequest);
+        Page<Permission> functions = permissionRepository.findFunctions(name,CustomResponseCode.ACTIVE_USER,appPermission,pageRequest);
         if(functions == null){
             throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION, " No record found !");
         }
@@ -159,7 +159,7 @@ public class PermissionService {
 
 
     public List<Permission> getAll(String name,String appPermission){
-        List<Permission> permissions = permissionRepository.listPermission(name,appPermission);
+        List<Permission> permissions = permissionRepository.listPermission(name,CustomResponseCode.ACTIVE_USER,appPermission);
         return permissions;
 
     }

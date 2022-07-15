@@ -24,16 +24,20 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
 
 
     @Query("SELECT p FROM Permission p WHERE ((:name IS NULL) OR (:name IS NOT NULL AND p.name like %:name%)) " +
+            " AND ((:status IS NULL) OR (:status IS NOT NULL AND p.status = :status))"+
             " AND ((:appPermission IS NULL) OR (:appPermission IS NOT NULL AND p.appPermission = :appPermission)) order by p.id")
     Page<Permission> findFunctions(@Param("name")String name,
+                                   @Param("status")String status,
                                    @Param("appPermission")String appPermission,
                                    Pageable pageable);
 
 
 
     @Query("SELECT p FROM Permission p WHERE ((:name IS NULL) OR (:name IS NOT NULL AND p.name like %:name%)) " +
+            " AND ((:status IS NULL) OR (:status IS NOT NULL AND p.status = :status))"+
             " AND ((:appPermission IS NULL) OR (:appPermission IS NOT NULL AND p.appPermission = :appPermission)) order by p.id")
     List<Permission> listPermission(@Param("name")String name,
+                                    @Param("status")String status,
                                     @Param("appPermission")String appPermission);
 
 
