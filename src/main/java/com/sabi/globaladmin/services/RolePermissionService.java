@@ -57,8 +57,8 @@ public class RolePermissionService {
         coreValidations.validateRolePermission(request);
         User userCurrent = TokenService.getCurrentUserFromSecurityContext();
         List<RolePermission> rolePerm = new ArrayList<>();
-        RolePermission rolePermission = new RolePermission();
         request.getPermissionIds().forEach(p -> {
+            RolePermission rolePermission = new RolePermission();
             rolePermission.setPermissionId(p.getPermissionId());
             rolePermission.setRoleId(request.getRoleId());
             rolePermission.setCreatedBy(userCurrent.getId());
