@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.sabi.globaladmin.dto.requestdto.AuthKeyRequest;
 import com.sabi.globaladmin.dto.requestdto.UserAppInfoDto;
+import com.sabi.globaladmin.dto.responsedto.UserAppAccessList;
 import com.sabi.globaladmin.dto.responsedto.UserAppInfoResponse;
 import com.sabi.globaladmin.dto.responsedto.UserInforResponse;
 import com.sabi.globaladmin.exceptions.BadRequestException;
@@ -41,16 +42,18 @@ public class UserAppInfoService {
     private final ObjectMapper objectMapper;
     private final CoreValidations validations;
     private final UserRepository userRepository;
+    private final PermissionService permissionService;
 
     public UserAppInfoService(ApplicationModelRepository applicationModelRepository,UserAppInfoRepository userAppInfoRepository,
                               ModelMapper mapper, ObjectMapper objectMapper,
-                              CoreValidations validations,UserRepository userRepository) {
+                              CoreValidations validations,UserRepository userRepository,PermissionService permissionService) {
         this.applicationModelRepository = applicationModelRepository;
         this.userAppInfoRepository = userAppInfoRepository;
         this.mapper = mapper;
         this.objectMapper = objectMapper;
         this.validations = validations;
         this.userRepository = userRepository;
+        this.permissionService = permissionService;
     }
 
 
@@ -70,6 +73,10 @@ public class UserAppInfoService {
         appinfo.setIvKey(Utility.doRandomPassword(16));
         log.debug("Create app info - {}"+ new Gson().toJson(appinfo));
         appinfo = userAppInfoRepository.save(appinfo);
+
+            List<UserAppAccessList> permissions=null;
+
+            permissions = permissionService.getUserAppPermissionByUserId(appinfo.getUserId());
             UserAppInfoResponse response = UserAppInfoResponse.builder()
                     .actionDate(appinfo.getActionDate())
                     .applicationCode(appinfo.getApplicationCode())
@@ -78,6 +85,7 @@ public class UserAppInfoService {
                     .token(appinfo.getToken())
                     .authKey(AESEncryption.encryptAES(appinfo.getAuthKey(),appinfo.getSecreteKey(),appinfo.getIvKey()))
                     .authKeyExpirationDate(appinfo.getAuthKeyExpirationDate())
+                    .permissions(permissions)
                     .build();
             return response;
 
@@ -92,6 +100,10 @@ public class UserAppInfoService {
             log.debug("Update app info - {}"+ new Gson().toJson(updateInfo));
             updateInfo=userAppInfoRepository.save(updateInfo);
 
+            List<UserAppAccessList> permissions=null;
+
+            permissions = permissionService.getUserAppPermissionByUserId(updateInfo.getUserId());
+
             UserAppInfoResponse response = UserAppInfoResponse.builder()
                     .actionDate(updateInfo.getActionDate())
                     .applicationCode(updateInfo.getApplicationCode())
@@ -100,6 +112,7 @@ public class UserAppInfoService {
                     .token(updateInfo.getToken())
                     .authKey(AESEncryption.encryptAES(updateInfo.getAuthKey(),updateInfo.getSecreteKey(),updateInfo.getIvKey()))
                     .authKeyExpirationDate(updateInfo.getAuthKeyExpirationDate())
+                    .permissions(permissions)
                     .build();
             return response;
         }
@@ -179,6 +192,8 @@ public class UserAppInfoService {
         }
 
         User user = userRepository.getOne(appInfo.getUserId());
+
+
 
         UserInforResponse userInforResponse = UserInforResponse.builder()
                 .firstName(user.getFirstName())

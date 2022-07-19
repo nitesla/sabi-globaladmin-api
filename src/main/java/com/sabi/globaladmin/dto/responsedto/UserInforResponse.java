@@ -27,4 +27,5 @@ public class UserInforResponse {
     private LocalDateTime actionDate;
     private String token;
     private String authKeyExpirationDate;
+
 }

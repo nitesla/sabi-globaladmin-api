@@ -6,6 +6,7 @@ import com.sabi.globaladmin.dto.requestdto.PermissionDto;
 import com.sabi.globaladmin.dto.responsedto.AccessListDto;
 import com.sabi.globaladmin.dto.responsedto.AppPermissionResponse;
 import com.sabi.globaladmin.dto.responsedto.PermissionResponseDto;
+import com.sabi.globaladmin.dto.responsedto.UserAppAccessList;
 import com.sabi.globaladmin.exceptions.ConflictException;
 import com.sabi.globaladmin.exceptions.NotFoundException;
 import com.sabi.globaladmin.model.AppCodes;
@@ -205,6 +206,27 @@ public class PermissionService {
         String access = accessList.replace("AppPermissionResponse","").replaceAll("[()]","")
                 .replace("name","").replace("=","").replace("appPermission","");
         return access;
+
+    }
+
+
+    public List<UserAppAccessList> getUserAppPermissionByUserId(Long userId) {
+
+        List<UserAppAccessList> resultLists = new ArrayList<>();
+        List<Object[]> result = permissionRepository.getUserAppPermissionByUserId(userId);
+        try {
+            result.forEach(r -> {
+                UserAppAccessList userPermission = new UserAppAccessList();
+                userPermission.setName((String) r[0]);
+                userPermission.setMenuName((String) r[1]);
+                userPermission.setAppPermission((String) r[2]);
+                resultLists.add(userPermission);
+
+            });
+        } catch (Exception var5) {
+            log.info("Error in returning object list" + var5);
+        }
+        return resultLists;
 
     }
 
