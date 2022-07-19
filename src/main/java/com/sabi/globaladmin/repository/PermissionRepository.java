@@ -18,6 +18,7 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
 
 
     Permission findByName(String name);
+    Permission findByMenuName(String menuName);
 
     Permission findByNameAndAppPermission(String name , String appPermission);
 
@@ -55,5 +56,11 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
             "    WHERE ur.userId =?1 group by p.appPermission" )
     List<Object[]> getPermissionsGrouping(Long userId);
 
+
+
+    @Query(value ="SELECT p.name,p.menuName,p.appPermission FROM Permission p  INNER JOIN RolePermission rp  ON p.id = rp.permissionId\n" +
+            "      INNER JOIN UserRole ur  ON rp.roleId = ur.roleId\n" +
+            "    WHERE ur.userId =?1")
+    List<Object[]> getUserAppPermissionByUserId(Long userId);
 
 }
