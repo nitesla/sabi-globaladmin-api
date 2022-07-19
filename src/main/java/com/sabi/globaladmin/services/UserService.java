@@ -124,10 +124,14 @@ public class UserService {
 
         // --------  sending token  -----------
 
+        String msg = "Hello " + " " + user.getFirstName() + " " + user.getLastName() + "<br/>"
+                + "Activation OTP :" + " "+ user.getResetToken() + "<br/>"
+                + " Kindly click the link below to complete your registration " + "<br/>"
+                + "<a href=\"" + request.getActivationUrl() +  "\">Activate your account</a>";
 
         NotificationRequestDto notificationRequestDto = new NotificationRequestDto();
         User emailRecipient = userRepository.getOne(user.getId());
-        notificationRequestDto.setMessage("Activation Otp " + " " + user.getResetToken());
+        notificationRequestDto.setMessage(msg);
         List<RecipientRequest> recipient = new ArrayList<>();
         recipient.add(RecipientRequest.builder()
                 .email(emailRecipient.getEmail())
@@ -135,15 +139,16 @@ public class UserService {
         notificationRequestDto.setRecipient(recipient);
         notificationService.emailNotificationRequest(notificationRequestDto);
 
+
         SmsRequest smsRequest = SmsRequest.builder()
-                .message("Activation Otp " + " " + user.getResetToken())
+                .message(msg)
                 .phoneNumber(emailRecipient.getPhone())
                 .build();
         notificationService.smsNotificationRequest(smsRequest);
 
 
         WhatsAppRequest whatsAppRequest = WhatsAppRequest.builder()
-                .message("Activation Otp " + " " + user.getResetToken())
+                .message(msg)
                 .phoneNumber(emailRecipient.getPhone())
                 .build();
         whatsAppService.whatsAppNotification(whatsAppRequest);
