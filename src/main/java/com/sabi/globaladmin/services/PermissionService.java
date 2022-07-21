@@ -176,7 +176,7 @@ public class PermissionService {
             result.forEach(r -> {
                 AccessListDto userPermission = new AccessListDto();
                 userPermission.setName((String) r[0]);
-//                userPermission.setAppPermission((String) r[1]);
+                userPermission.setAppPermission((String) r[1]);
                 resultLists.add(userPermission);
 
             });
