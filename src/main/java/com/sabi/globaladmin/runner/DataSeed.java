@@ -53,13 +53,13 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
         seedPermissions();
-        seedCountries();
-        seedStates();
-        seedLocalGovernments();
-        seedBanks();
-        seedIntegrationUsers();
-        seedAdminUser();
-        seedAppCode();
+//        seedCountries();
+//        seedStates();
+//        seedLocalGovernments();
+//        seedBanks();
+//        seedIntegrationUsers();
+//        seedAdminUser();
+//        seedAppCode();
 
     }
 
@@ -1308,9 +1308,70 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
                 add(new Permission("PARTNER USER" ,"ACTIVATE_PARTNER_USER",	"/api/v1/partneruser/activatepartneruser", "A","AG","1"));
                 add(new Permission("PARTNER USER" ,"VIEW_PARTNER_USER",	    "/api/v1/partneruser/page?page=&pageSize=", "A","AG","1"));
 
+                add(new Permission("ROLE_VIEW_SUPPLIER_DASHBAORD" ,"VIEW_DASHBOARD",	    "/", "U","SP","1"));
+                add(new Permission("ROLE_VIEW_SUPPLY_REQUEST" ,"VIEW_FEED",	"/", "U","SP","1"));
+                add(new Permission("ROLE_ACCEPT_SUPPLY_REQUEST" ,"ACCEPT_FEED",	"/", "U","SP","1"));
+                add(new Permission("ROLE_REJECT_SUPPLY_REQUEST" ,"REJECT_FEED",	"/", "U","SP","1"));
+                add(new Permission("ROLE_NEGOTIATE_SUPPLY_REQUEST" ,"NEGOTIATE_FEED",	"/", "U","SP","1"));
+                add(new Permission("CANCEL_FEED_SUPPLY_REQUEST" ,"CANCEL_FEED_REQUEST",	"/", "U","SP","1"));
+                add(new Permission("ROLE_NEGOTIATE_PRICE_SUPPLY_REQUEST" ,"NEGOTIATE_PRICE",	"/", "U","SP","1"));
+                add(new Permission("ROLE_VIEW_SHIPMENT" ,"VIEW_ORDERS",	"/", "U","SP","1"));
+                add(new Permission("ROLE_UPDATE_SHIPMENT" ,"UPDATE_ORDERS",	"/", "U","SP","1"));
+                add(new Permission("ROLE_MANAGE_ADD_INVENTORY" ,"MANAGE_ADD_PRODUCT",	"/", "U","SP","1"));
+                add(new Permission("ROLE_MANAGE_PRICE_INVENTORY" ,"MANAGE_PRODUCT_PRICE",	"/", "U","SP","1"));
+                add(new Permission("ROLE_MANAGE_QUANTITY_INVENTORY" ,"MANAGE_PRODUCT_QUANTITY",	"/", "U","SP","1"));
+                add(new Permission("ROLE_VIEW_INVENTORY" ,"VIEW_INVENTORY_REPORT",	"/", "U","SP","1"));
+                add(new Permission("ROLE_VIEW_SABI_CATALOGUE_INVENTORY" ,"VIEW_SABI_CATALOGUE",	"/", "U","SP","1"));
+                add(new Permission("ROLE_VIEW_WAREHOUSE" ,"VIEW_WAREHOUSE",	"/", "U","SP","1"));
+                add(new Permission("WAREHOUSE" ,"ASSET",	"/", "U","SP","1"));
+                add(new Permission("ROLE_MANAGE_STATUS_WAREHOUSE" ,"MANAGE_WAREHOUSE_STATUS",	"/", "U","SP","1"));
+                add(new Permission("ROLE_ADD_WAREHOUSE" ,"ADD_WAREHOUSE_USER",	"/", "U","SP","1"));
+                add(new Permission("ROLE_ADD_WAREHOUSE" ,"ADD_WAREHOUSE_PRODUCT",	"/", "U","SP","1"));
+                add(new Permission("ROLE_DELETE_WAREHOUSE" ,"DELETE_WAREHOUSE",	"/", "U","SP","1"));
+                add(new Permission("ROLE_CREATE_SUPPLIER_USER" ,"CREATE_TEAM",	"/", "U","SP","1"));
+                add(new Permission("CREATE_ROLE" ,"CREATE_ROLE",	"/", "U","SP","1"));
+                add(new Permission("EDIT_ROLE" ,"EDIT_ROLE",	"/", "U","SP","1"));
+                add(new Permission("DELETE_ROLE" ,"DELETE_ROLE",	"/", "U","SP","1"));
+                add(new Permission("ROLE_MANAGE_USER_SETTINGS" ,"MANAGE_SETTINGS",	"/", "U","SP","1"));
+                add(new Permission("ROLE_MANAGE_USER_PASSWORD" ,"MANAGE_PASSWORD",	"/", "U","SP","1"));
+                add(new Permission("ROLE_MANAGE_PAYMENT_SUPPLIER_USER" ,"PAYMENT_TERMS",	"/", "U","SP","1"));
+                add(new Permission("ROLE_MANAGE_DELIVERY_SUPPLIER_USER" ,"MANAGE_DELIVERY",	"/", "U","SP","1"));
 
-
-
+                add(new Permission("ROLE_VIEW_SUPPLIER_DASHBAORD" ,"VIEW_DASHBOARD", "/", "A","SP","1"));
+                add(new Permission("ROLE_VIEW_MANUFACTURER" ,"VIEW_MANUTACTURER",	"/", "A","SP","1"));
+                add(new Permission("ROLE_EDIT_MANUFACTURER" ,"EDIT_MANUTACTURER",	"/", "A","SP","1"));
+                add(new Permission("ROLE_ACTIVATE_MANUFACTURER" ,"ACTIVATE_MANUTACTURER",	"/", "A","SP","1"));
+                add(new Permission("ROLE_ADD_MANUFACTURER" ,"ADD_MANUTACTURER",	"/", "A","SP","1"));
+                add(new Permission("ROLE_VIEW_PRODUCT_CATEGORY" ,"VIEW_PRODUCT_CATEGORY",	"/", "A","SP","1"));
+                add(new Permission("ROLE_EDIT_PRODUCT_CATEGORY" ,"EDIT_PRODUCT_CATEGORY",	"/", "A","SP","1"));
+                add(new Permission("ROLE_ACTIVATE_PRODUCT_CATEGORY" ,"ACTIVATE_PRODUCT_CATEGORY",	"/", "A","SP","1"));
+                add(new Permission("ROLE_DEACTIVATE_PRODUCT_CATEGORY" ,"DEACTIVATE_PRODUCT_CATEGORY",	"/", "A","SP","1"));
+                add(new Permission("ROLE_ADD_PRODUCT_CATEGORY" ,"ADD_PRODUCT_CATEGORY",	"/", "A","SP","1"));
+                add(new Permission("ROLE_ADD_PRODUCT_LIST" ,"ADD_PRODUCT_LIST",	"/", "A","SP","1"));
+                add(new Permission("ROLE_VIEW_PRODUCT_LIST" ,"VIEW_PRODUCT_LIST",	"/", "A","SP","1"));
+                add(new Permission("ROLE_EDIT_PRODUCT_LIST" ,"EDIT_PRODUCT_LIST",	"/", "A","SP","1"));
+                add(new Permission("ROLE_DELETE_PRODUCT_LIST" ,"DELETE_PRODUCT_LIST",	"/", "A","SP","1"));
+                add(new Permission("ROLE_ADD_PRODUCT_VARIANT" ,"ADD_PRODUCT_VARIANT",	"/", "A","SP","1"));
+                add(new Permission("ROLE_VIEW_PRODUCT VARIANT" ,"VIEW_PRODUCT_VARIANT",	"/", "A","SP","1"));
+                add(new Permission("ROLE_EDIT_PRODUCT_VARIANT" ,"EDIT_PRODUCT_VARIANT",	"/", "A","SP","1"));
+                add(new Permission("ROLE_ACTIVATE_PRODUCT_VARIANT" ,"ACTIVATE_PRODUCT-VARIANT",	"/", "A","SP","1"));
+                add(new Permission("ROLE_DEACTIVATIONPRODUCT_VARIANT" ,"DEACTIVATE_PRODUCT-VARIANT",	"/", "A","SP","1"));
+                add(new Permission("ROLE_VIEW_SUPPLIER" ,"VIEW_SUPPLIER",	"/", "A","SP","1"));
+                add(new Permission("ROLE_EDIT_SUPPLIER" ,"EDIT_SUPPLIER",	"/", "A","SP","1"));
+                add(new Permission("ROLE_ACTIVATE_SUPPLIER" ,"ACTIVATE_SUPPLIER",	"/", "A","SP","1"));
+                add(new Permission("ROLE_DEACTIVATE_SUPPLIER" ,"DEACTIVATE_SUPPLIER",	"/", "A","SP","1"));
+                add(new Permission("ROLE_VIEW_SUPPLIER_REQUEST" ,"VIEW_SUPPLIER_REQUEST",	"/", "A","SP","1"));
+                add(new Permission("ROLE_ADD_SUPPLIER_REQUEST" ,"CREATE_SUPPLIER_REQUEST",	"/", "A","SP","1"));
+                add(new Permission("ROLE_ASSIGN_SUPPLIER_REQUEST" ,"ASSIGN_SUPPLIER_REQUEST",	"/", "A","SP","1"));
+                add(new Permission("ROLE_REJECT_SUPPLIER_REQUEST" ,"REJECT_SUPPLIER_REQUEST",	"/", "A","SP","1"));
+                add(new Permission("ROLE_COUNTER_SUPPLIER_REQUEST" ,"COUNTER_OFFER",	"/", "A","SP","1"));
+                add(new Permission("ROLE_VIEW_SUPPLIER_CATEGORY" ,"VIEW_SUPPLIER_CATEGORY",	"/", "A","SP","1"));
+                add(new Permission("ROLE_EDIT_SUPPLIER_CATEGORY" ,"EDIT_SUPPLIER_CATEGORY",	"/", "A","SP","1"));
+                add(new Permission("ROLE_ACTIVATE_SUPPLIER_CATEGORY" ,"ACTIVATE_SUPPLIER_CATEGORY",	"/", "A","SP","1"));
+                add(new Permission("ROLE_DEACTIVATE_SUPPLIER_CATEGORY" ,"DEACTIVATE_SUPPLIER_CATEGORY",	"/", "A","SP","1"));
+                add(new Permission("ROLE_VIEW_SUPPLIER_CATEGORY" ,"VIEW_SUPPLIER_CATEGORY",	"/", "A","SP","1"));
+                add(new Permission("ROLE_VIEW_SHIPMENT" ,"VIEW_SHIPMENT",	"/", "A","SP","1"));
+                add(new Permission("ROLE_VIEW_AUDIT_TRAIL" ,"VIEW_AUDIT_TRAIL",	"/", "A","SP","1"));
 
 
 
