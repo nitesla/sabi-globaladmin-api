@@ -53,13 +53,13 @@ public class DataSeed implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
         seedPermissions();
-//        seedCountries();
-//        seedStates();
-//        seedLocalGovernments();
-//        seedBanks();
-//        seedIntegrationUsers();
-//        seedAdminUser();
-//        seedAppCode();
+        seedCountries();
+        seedStates();
+        seedLocalGovernments();
+        seedBanks();
+        seedIntegrationUsers();
+        seedAdminUser();
+        seedAppCode();
 
     }
 

@@ -185,16 +185,15 @@ public class UserAppInfoService {
         if(result.equals("1")){
             throw new BadRequestException(CustomResponseCode.BAD_REQUEST, " Auth key expired");
         }
-
         UserAppInfo appInfo = userAppInfoRepository.findByAuthKey(decryptAuthKey);
         if(appInfo == null){
             throw new NotFoundException(CustomResponseCode.NOT_FOUND_EXCEPTION, " No record found !");
         }
-
         User user = userRepository.getOne(appInfo.getUserId());
 
+        List<UserAppAccessList> permissions=null;
 
-
+        permissions = permissionService.getUserAppPermissionByUserId(appInfo.getUserId());
         UserInforResponse userInforResponse = UserInforResponse.builder()
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
@@ -206,8 +205,8 @@ public class UserAppInfoService {
                 .applicationCode(appInfo.getApplicationCode())
                 .token(appInfo.getToken())
                 .authKeyExpirationDate(appInfo.getAuthKeyExpirationDate())
+                .permissions(permissions)
                 .build();
-
 
         return userInforResponse;
     }
